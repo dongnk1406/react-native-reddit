@@ -1,0 +1,1 @@
+// storage common functions to use anywhere
