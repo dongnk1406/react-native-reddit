@@ -1,10 +1,8 @@
-import {NavigationProp, ParamListBase} from '@react-navigation/native';
+import {NavigationProps} from 'src/type';
+
 export {default} from './OnBoarding';
 
-export interface OnBoardingProps {
-
-    navigation: NavigationProp<ParamListBase>;
-}
+export interface OnBoardingProps extends NavigationProps {}
 
 export interface DescriptionProps {
   data: [
@@ -14,7 +12,4 @@ export interface DescriptionProps {
       url: string;
     },
   ];
-
-
-  
 }

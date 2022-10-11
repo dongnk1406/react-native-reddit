@@ -1,7 +1,4 @@
-import {NavigationProp, ParamListBase} from '@react-navigation/native';
+import {NavigationProps} from 'src/type';
 
+export interface PopularProps extends NavigationProps {}
 export {default} from './Popular';
-
-export interface PopularProps {
-  navigation: NavigationProp<ParamListBase>;
-}

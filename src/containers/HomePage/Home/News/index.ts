@@ -1,13 +1,12 @@
-import {NavigationProp, ParamListBase} from '@react-navigation/native';
+import { NavigationProps } from 'src/type';
+
 export {default} from './News';
 
-export interface NewsProps {
-    navigation: NavigationProp<ParamListBase>;
+export interface NewsProps extends NavigationProps {
 }
 
 export interface Post {
-    id: number;
-    name: string;
-    avatar: string;
-  }
-  
+  id: number;
+  name: string;
+  avatar: string;
+}
