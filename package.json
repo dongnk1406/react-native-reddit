@@ -55,6 +55,7 @@
     "react-native-webview": "^11.23.0",
     "react-native-youtube-iframe": "^2.2.2",
     "react-redux": "^8.0.4",
+    "redux": "^4.2.0",
     "redux-saga": "^1.2.1",
     "uuid": "^9.0.0"
   },

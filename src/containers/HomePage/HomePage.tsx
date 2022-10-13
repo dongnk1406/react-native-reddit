@@ -1,16 +1,19 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {Tabs} from 'src/navigation/TabNavigator';
-import {config} from 'app-config';
+import {config, isAndroidPlatform} from 'app-config';
+import {NavigationProps} from 'src/type';
 
 const BottomTab = createBottomTabNavigator();
 
-function HomePage({navigation}) {
+interface HomePageProps extends NavigationProps {}
+
+function HomePage({navigation}: HomePageProps) {
   return (
     <BottomTab.Navigator
       screenOptions={{
         tabBarActiveTintColor: config.color.primary,
-        tabBarHideOnKeyboard: true,
+        tabBarHideOnKeyboard: isAndroidPlatform ? true : false,
         tabBarBadgeStyle: {
           backgroundColor: config.color.notification,
           color: config.color.white,
