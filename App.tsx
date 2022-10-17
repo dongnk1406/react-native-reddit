@@ -1,14 +1,15 @@
-import React, {useEffect, useMemo, useReducer, memo} from 'react';
+import React, {useEffect, useMemo, useReducer} from 'react';
 import {Provider} from 'react-redux';
+import {PersistGate} from 'redux-persist/integration/react';
 import {NavigationContainer} from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {AppStack, AuthStack} from 'src/navigation';
-import {Launch} from 'src/containers';
-import {AuthContext} from './src/theme/context';
 import {NativeBaseProvider} from 'native-base';
 import {StatusBar} from 'react-native';
+import {AppStack, AuthStack} from 'src/navigation';
+import {Launch} from 'src/containers';
+import {persistor, store} from 'src/store';
+import {AuthContext} from './src/theme/context';
 import {config} from 'app-config';
-import {store} from 'src/store';
 
 interface AppProps {}
 
@@ -104,16 +105,18 @@ const App = ({}: AppProps) => {
 
   return (
     <Provider store={store}>
-      <NativeBaseProvider>
-        <AuthContext.Provider value={authContext}>
-          <NavigationContainer>
-            <StatusBar backgroundColor={config.color.primary} />
-            {loginState.userToken !== null ? <AppStack /> : <AuthStack />}
-          </NavigationContainer>
-        </AuthContext.Provider>
-      </NativeBaseProvider>
+      <PersistGate loading={null} persistor={persistor}>
+        <NativeBaseProvider>
+          <AuthContext.Provider value={authContext}>
+            <NavigationContainer>
+              <StatusBar backgroundColor={config.color.primary} />
+              {loginState.userToken !== null ? <AppStack /> : <AuthStack />}
+            </NavigationContainer>
+          </AuthContext.Provider>
+        </NativeBaseProvider>
+      </PersistGate>
     </Provider>
   );
 };
 
-export default memo(App);
+export default App;
