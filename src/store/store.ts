@@ -1,14 +1,6 @@
 import {configureStore, ThunkAction, Action} from '@reduxjs/toolkit';
 import createSagaMiddleware from 'redux-saga';
-import {
-  FLUSH,
-  REHYDRATE,
-  PAUSE,
-  PERSIST,
-  PURGE,
-  REGISTER,
-  persistStore,
-} from 'redux-persist';
+import {FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER} from 'redux-persist';
 import rootSaga from './rootSaga';
 import rootReducer from './slices';
 
@@ -23,8 +15,6 @@ export const store = configureStore({
       },
     }).concat(sagaMiddleware),
 });
-
-export const persistor = persistStore(store);
 
 sagaMiddleware.run(rootSaga);
 

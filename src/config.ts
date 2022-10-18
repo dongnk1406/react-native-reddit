@@ -44,6 +44,7 @@ const config = {
     },
     typography: {
       text: '#2B2B2B',
+      textLight: '#fff',
       secondary: '#A0A0A0',
     },
   },

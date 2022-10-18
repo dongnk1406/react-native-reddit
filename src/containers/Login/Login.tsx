@@ -12,12 +12,7 @@ import {
 } from 'react-native';
 import CountryPicker, {CountryCode} from 'react-native-country-picker-modal';
 import {navigationStrings} from 'src/navigation';
-import {
-  config,
-  isAndroidPlatform,
-  isIOSPlatform,
-  isIphoneX,
-} from 'app-config';
+import {config, isAndroidPlatform, isIOSPlatform, isIphoneX} from 'app-config';
 import {LoginProps} from '.';
 
 const LoginScreen = ({navigation}: LoginProps) => {

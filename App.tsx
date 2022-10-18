@@ -1,5 +1,6 @@
 import React, {useEffect, useMemo, useReducer} from 'react';
 import {Provider} from 'react-redux';
+import {persistStore} from 'redux-persist';
 import {PersistGate} from 'redux-persist/integration/react';
 import {NavigationContainer} from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -7,11 +8,13 @@ import {NativeBaseProvider} from 'native-base';
 import {StatusBar} from 'react-native';
 import {AppStack, AuthStack} from 'src/navigation';
 import {Launch} from 'src/containers';
-import {persistor, store} from 'src/store';
+import {store} from 'src/store';
 import {AuthContext} from './src/theme/context';
 import {config} from 'app-config';
 
 interface AppProps {}
+
+let persistor = persistStore(store);
 
 const App = ({}: AppProps) => {
   const initialLoginState = {
@@ -109,7 +112,7 @@ const App = ({}: AppProps) => {
         <NativeBaseProvider>
           <AuthContext.Provider value={authContext}>
             <NavigationContainer>
-              <StatusBar backgroundColor={config.color.primary} />
+              <StatusBar backgroundColor={config.color.primary} barStyle='default' />
               {loginState.userToken !== null ? <AppStack /> : <AuthStack />}
             </NavigationContainer>
           </AuthContext.Provider>
