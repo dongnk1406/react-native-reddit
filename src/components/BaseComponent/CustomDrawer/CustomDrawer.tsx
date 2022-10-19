@@ -100,6 +100,18 @@ const CustomDrawer = (props: CustomDrawerProps) => {
               props.navigation.navigate(navigationStrings.TRAINING);
             }}
           />
+
+          <DrawerItem
+            icon={({color, size}) => (
+              <IconAntDesign name="profile" size={size} color={color} />
+            )}
+            style={styles.drawerItem}
+            label={navBarTitle.POMO_FOCUS}
+            labelStyle={styles.drawerLabel}
+            onPress={() => {
+              props.navigation.navigate(navigationStrings.POMO_FOCUS);
+            }}
+          />
         </View>
 
         <View

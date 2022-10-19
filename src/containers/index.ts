@@ -9,6 +9,7 @@ import Training from './Training';
 import Launch from './Launch';
 import BookMark from './BookMark';
 import Setting from './Setting';
+import PomoFocus from './PomoFocus';
 
 // export
 
@@ -23,4 +24,5 @@ export {
   Launch,
   BookMark,
   Setting,
+  PomoFocus
 };

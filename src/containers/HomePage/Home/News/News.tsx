@@ -5,6 +5,7 @@ import {
   ActivityIndicator,
   ScrollView,
   TouchableOpacity,
+  RefreshControl,
 } from 'react-native';
 import {useFetch} from 'src/hooks';
 import {config} from 'app-config';
@@ -18,6 +19,14 @@ const IMAGE_SIZE = (config.layout.windowWidth - 20) / 3;
 
 export default function NewsScreen({navigation}: NewsProps) {
   const {data, error} = useFetch<Post[]>(url);
+  const [refreshing, setRefreshing] = React.useState<boolean>(false);
+
+  const onRefresh = React.useCallback(async () => {
+    setRefreshing(true);
+    setTimeout(() => {
+      setRefreshing(false);
+    }, 1000);
+  }, []);
 
   if (error) {
     return (
@@ -36,7 +45,10 @@ export default function NewsScreen({navigation}: NewsProps) {
   }
 
   return (
-    <ScrollView>
+    <ScrollView
+      refreshControl={
+        <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+      }>
       <View
         style={{
           flexDirection: 'row',

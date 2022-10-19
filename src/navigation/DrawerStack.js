@@ -1,6 +1,13 @@
 import React from 'react';
 import {createDrawerNavigator} from '@react-navigation/drawer';
-import {HomePage, BookMark, Training, Profile, Setting} from '../containers';
+import {
+  HomePage,
+  BookMark,
+  Training,
+  Profile,
+  Setting,
+  PomoFocus,
+} from '../containers';
 import {config} from 'app-config';
 import {navBarTitle, navigationStrings} from './constants';
 import {ListFriend} from 'src/containers/Profile';
@@ -68,6 +75,13 @@ function DrawerStack({navigation}) {
         options={{
           headerTitle: navBarTitle.SETTING,
           headerLeft: () => null,
+        }}
+      />
+      <Drawer.Screen
+        name={navigationStrings.POMO_FOCUS}
+        component={PomoFocus}
+        options={{
+          headerShown: false,
         }}
       />
     </Drawer.Navigator>

@@ -19,8 +19,6 @@ function Popular({navigation}: PopularProps) {
   const dispatch = useAppDispatch();
   const [inputText, setInputText] = useState<string>('');
 
-  console.log(inputText)
-
   return (
     <ScrollView>
       <View style={{flex: 1}}>

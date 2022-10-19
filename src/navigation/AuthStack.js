@@ -1,8 +1,6 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {publicRoutes} from './routes';
-import { StatusBar } from 'react-native';
-import { config } from 'app-config';
 const Stack = createNativeStackNavigator();
 
 function AuthStack(props) {

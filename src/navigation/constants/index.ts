@@ -8,7 +8,6 @@ const navigationStrings = {
   POST: 'Post',
   CHAT: 'Chat',
   NOTIFICATION: 'Notification',
-  POMO_TIMER: 'Pomo Timer',
   NEWS: 'News',
   POPULAR: 'Popular',
   GAME_DETAIL: 'GameDetail',
@@ -21,6 +20,7 @@ const navigationStrings = {
   SIGN_OUT: 'SignOut',
   POLICY: 'Policy',
   BOOK_MARK: 'BookMark',
+  POMO_FOCUS: 'Pomofoucs'
 };
 
 const navBarTitle = {
@@ -46,6 +46,7 @@ const navBarTitle = {
   SIGN_OUT: 'Sign out',
   POLICY: 'Policy',
   BOOK_MARK: 'Book mark',
+  POMO_FOCUS: 'Pomo foucs'
 };
 
 export {navigationStrings, navBarTitle};
