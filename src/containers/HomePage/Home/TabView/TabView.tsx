@@ -11,6 +11,7 @@ function TabView({}: TabViewProps) {
   return (
     <Tab.Navigator
       screenOptions={{
+        tabBarScrollEnabled: true,
         tabBarContentContainerStyle: {
           alignItems: 'center',
           justifyContent: 'center',
@@ -21,7 +22,9 @@ function TabView({}: TabViewProps) {
           fontSize: 14,
           textTransform: 'capitalize',
         },
-
+        tabBarItemStyle: {
+          backgroundColor: 'blue',
+        },
         tabBarIndicatorStyle: {
           width: '20%',
           left: '15%',
@@ -29,7 +32,7 @@ function TabView({}: TabViewProps) {
         },
       }}>
       <Tab.Screen name={navigationStrings.NEWS} component={News} />
-      <Tab.Screen name={navigationStrings.POPULAR} component={Popular} />
+      <Tab.Screen name="dsds" component={News} />
     </Tab.Navigator>
   );
 }

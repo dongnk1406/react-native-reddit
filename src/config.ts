@@ -7,7 +7,7 @@ const isIphoneX =
 
 const isIOSPlatform = Platform.OS === 'ios';
 const isAndroidPlatform = Platform.OS === 'android';
-const heightStatusBar =  StatusBar.currentHeight;
+const heightStatusBar = StatusBar.currentHeight;
 
 const config = {
   color: {
@@ -22,6 +22,7 @@ const config = {
     notification: '#e46161',
     placeholder: '#c7c7cd',
     border: '#c7c7cd',
+    disable: '#e6e6e6',
     shadow: {
       shadowColor: '#000',
       shadowOffset: {
@@ -47,12 +48,13 @@ const config = {
       text: '#2B2B2B',
       textLight: '#fff',
       secondary: '#A0A0A0',
+      disableText: '#b5b5b5',
     },
   },
   layout: {
     windowWidth: windowWidth,
     windowHeight: windowHeight,
-    activeOpacity: 0.5,
+    activeOpacity: 0.6,
   },
 };
 export {config, isIphoneX, isIOSPlatform, isAndroidPlatform, heightStatusBar};

@@ -112,7 +112,10 @@ const App = ({}: AppProps) => {
         <NativeBaseProvider>
           <AuthContext.Provider value={authContext}>
             <NavigationContainer>
-              <StatusBar backgroundColor={config.color.primary} barStyle='default' />
+              <StatusBar
+                backgroundColor={config.color.primary}
+                barStyle="default"
+              />
               {loginState.userToken !== null ? <AppStack /> : <AuthStack />}
             </NavigationContainer>
           </AuthContext.Provider>
