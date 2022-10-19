@@ -15,6 +15,7 @@ const config = {
     gray: '#999',
     black: '#000',
     primary: '#ad1c6d',
+    subPrimary: '#ad1c6aad',
     sub: '#f5bb4b',
     secondary: '#0aada8',
     addition: '#AD40AF',
