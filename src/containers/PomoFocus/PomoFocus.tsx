@@ -1,5 +1,5 @@
 import {config, isAndroidPlatform} from 'app-config';
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import {
   Text,
   View,
@@ -14,9 +14,12 @@ import IconIonicons from 'react-native-vector-icons/Ionicons';
 import {PomoFocusProps} from '.';
 import {ThemeProvider} from 'react-native-elements';
 import {BaseButton} from 'src/components';
+import Timer from './Timer';
 
 const PomoFocusScreen = ({navigation}: PomoFocusProps) => {
   const [mode, setMode] = useState<string>('pomodoro');
+  const [isCounting, setCounting] = useState<boolean>(false);
+  const [timeCountDown, setTimeCountDown] = useState<number>(0);
 
   useEffect(() => {
     return () => {
@@ -26,27 +29,37 @@ const PomoFocusScreen = ({navigation}: PomoFocusProps) => {
     };
   }, []);
 
-  const getBackgroundColorForMode = useCallback(
-    (mode: string) => {
-      switch (mode) {
-        case 'long_break':
-          return '#457ca3';
-        case 'short_break':
-          return '#4c9195';
-        default:
-          return '#d95550';
-      }
-    },
-    [mode],
-  );
+  const getStatusForMode = useMemo(() => {
+    switch (mode) {
+      case 'long_break':
+        return {
+          backgroundColor: '#457ca3',
+          initTime: 15,
+        };
+      case 'short_break':
+        return {
+          backgroundColor: '#4c9195',
+          initTime: 5,
+        };
+      default:
+        return {
+          backgroundColor: '#d95550',
+          initTime: 25,
+        };
+    }
+  }, [mode]);
+
+  useEffect(() => {
+    setTimeCountDown(getStatusForMode.initTime);
+  }, [mode]);
 
   return (
     <ThemeProvider>
-      <StatusBar backgroundColor={getBackgroundColorForMode(mode)} />
+      <StatusBar backgroundColor={getStatusForMode.backgroundColor} />
       <SafeAreaView
         style={{
           flex: 1,
-          backgroundColor: getBackgroundColorForMode(mode),
+          backgroundColor: getStatusForMode.backgroundColor,
         }}>
         <View style={{marginHorizontal: 12, flex: 1}}>
           <View
@@ -67,12 +80,12 @@ const PomoFocusScreen = ({navigation}: PomoFocusProps) => {
                 <Text>Pomofocus</Text>
               </View>
               <View>
-                <View>
+                <TouchableOpacity>
                   <IconFontAwesome5 name="chart-bar" />
-                </View>
-                <View>
+                </TouchableOpacity>
+                <TouchableOpacity>
                   <IconIonicons name="settings-sharp" />
-                </View>
+                </TouchableOpacity>
               </View>
             </View>
           </View>
@@ -92,7 +105,10 @@ const PomoFocusScreen = ({navigation}: PomoFocusProps) => {
                 }}>
                 <TouchableOpacity
                   activeOpacity={config.layout.activeOpacity}
-                  onPress={() => setMode('pomodoro')}
+                  onPress={() => {
+                    setMode('pomodoro');
+                    setCounting(false);
+                  }}
                   style={{
                     borderRadius: 6,
                     paddingHorizontal: 10,
@@ -104,7 +120,10 @@ const PomoFocusScreen = ({navigation}: PomoFocusProps) => {
                 </TouchableOpacity>
                 <TouchableOpacity
                   activeOpacity={config.layout.activeOpacity}
-                  onPress={() => setMode('short_break')}
+                  onPress={() => {
+                    setMode('short_break');
+                    setCounting(false);
+                  }}
                   style={{
                     backgroundColor:
                       mode === 'short_break' ? '#00000026' : 'transparent',
@@ -116,7 +135,10 @@ const PomoFocusScreen = ({navigation}: PomoFocusProps) => {
                 </TouchableOpacity>
                 <TouchableOpacity
                   activeOpacity={config.layout.activeOpacity}
-                  onPress={() => setMode('long_break')}
+                  onPress={() => {
+                    setMode('long_break');
+                    setCounting(false);
+                  }}
                   style={{
                     backgroundColor:
                       mode === 'long_break' ? '#00000026' : 'transparent',
@@ -128,29 +150,20 @@ const PomoFocusScreen = ({navigation}: PomoFocusProps) => {
                 </TouchableOpacity>
               </View>
 
-              <View
-                style={{
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  paddingVertical: 20,
-                }}>
-                <Text style={[styles.text, {fontWeight: 'bold', fontSize: 85}]}>
-                  25:00
-                </Text>
-              </View>
+              <Timer timeCountDown={timeCountDown} counting={isCounting} />
 
               <View>
                 <BaseButton
-                  label="Start"
+                  label={isCounting ? 'Stop' : 'Start'}
                   uppercase
                   textStyle={{
-                    color: getBackgroundColorForMode(mode),
+                    color: getStatusForMode,
                   }}
-                  style={{
-                    backgroundColor: '#fff',
+                  color={config.color.white}
+                  onPress={() => {
+                    setCounting(prev => !prev);
                   }}
-                  onPress={() => {}}
-                  containerStyle={{width: '50%', backgroundColor: '#c7c7cd'}}
+                  containerStyle={{width: '50%'}}
                 />
               </View>
             </View>

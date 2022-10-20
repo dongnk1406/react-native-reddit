@@ -23,6 +23,7 @@ const config = {
     placeholder: '#c7c7cd',
     border: '#c7c7cd',
     disable: '#e6e6e6',
+    overlay: 'rgba(0,0,0,.6)',
     shadow: {
       shadowColor: '#000',
       shadowOffset: {

@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {Text, TouchableOpacity, View} from 'react-native';
 import {config} from 'app-config';
 import {BaseButtonProps} from '.';
+import {hexToRgba} from 'app-helper';
 
 const BaseButton = ({
   label,
@@ -10,6 +11,7 @@ const BaseButton = ({
   style,
   containerStyle,
   disable,
+  color,
   onPress,
 }: BaseButtonProps) => {
   const [isPressed, setPressed] = useState<boolean>(false);
@@ -32,7 +34,7 @@ const BaseButton = ({
             borderRadius: 12,
             backgroundColor: disable
               ? config.color.border
-              : config.color.subPrimary,
+              : hexToRgba(color || config.color.primary, 0.5),
             marginVertical: 5,
           },
           containerStyle,
@@ -44,7 +46,7 @@ const BaseButton = ({
               bottom: 3,
               backgroundColor: disable
                 ? config.color.disable
-                : config.color.primary,
+                : color || config.color.primary,
               height: 50,
               width: '100%',
               borderRadius: 12,

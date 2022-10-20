@@ -23,16 +23,15 @@ function TabView({}: TabViewProps) {
           textTransform: 'capitalize',
         },
         tabBarItemStyle: {
-          backgroundColor: 'blue',
+          width: 100,
         },
+        tabBarIndicatorContainerStyle: {},
         tabBarIndicatorStyle: {
-          width: '20%',
-          left: '15%',
           backgroundColor: config.color.primary,
         },
       }}>
       <Tab.Screen name={navigationStrings.NEWS} component={News} />
-      <Tab.Screen name="dsds" component={News} />
+      <Tab.Screen name={navigationStrings.POPULAR} component={Popular} />
     </Tab.Navigator>
   );
 }
