@@ -1,81 +1,174 @@
-import {config} from 'app-config';
-import React, {useCallback, useEffect, useState} from 'react';
-import {Text, View, SafeAreaView, StyleSheet} from 'react-native';
+import {config, isAndroidPlatform} from 'app-config';
+import React, {useEffect, useMemo, useState} from 'react';
+import {
+  Text,
+  View,
+  SafeAreaView,
+  StyleSheet,
+  TouchableOpacity,
+  ScrollView,
+  StatusBar,
+} from 'react-native';
 import IconFontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import IconIonicons from 'react-native-vector-icons/Ionicons';
 import {PomoFocusProps} from '.';
-import {Button, ThemeProvider} from 'react-native-elements';
-
-const MyApp = () => {
-  return (
-    <ThemeProvider>
-      <Button title="Hey!" />
-    </ThemeProvider>
-  );
-};
+import {ThemeProvider} from 'react-native-elements';
+import {BaseButton} from 'src/components';
+import Timer from './Timer';
 
 const PomoFocusScreen = ({navigation}: PomoFocusProps) => {
-  const [mode, setMode] = useState<string>('');
+  const [mode, setMode] = useState<string>('pomodoro');
+  const [isCounting, setCounting] = useState<boolean>(false);
+  const [timeCountDown, setTimeCountDown] = useState<number>(0);
 
-  const getBackgroundColorForMode = useCallback(
-    (mode: string) => {
-      switch (mode) {
-        case 'long_break':
-          return '#457ca3';
-        case 'short_break':
-          return '#4c9195';
-        default:
-          return '#d95550';
-      }
-    },
-    [mode],
-  );
+  useEffect(() => {
+    return () => {
+      isAndroidPlatform
+        ? StatusBar.setBackgroundColor(config.color.primary)
+        : () => {};
+    };
+  }, []);
+
+  const getStatusForMode = useMemo(() => {
+    switch (mode) {
+      case 'long_break':
+        return {
+          backgroundColor: '#457ca3',
+          initTime: 15,
+        };
+      case 'short_break':
+        return {
+          backgroundColor: '#4c9195',
+          initTime: 5,
+        };
+      default:
+        return {
+          backgroundColor: '#d95550',
+          initTime: 25,
+        };
+    }
+  }, [mode]);
+
+  useEffect(() => {
+    setTimeCountDown(getStatusForMode.initTime);
+  }, [mode]);
 
   return (
     <ThemeProvider>
+      <StatusBar backgroundColor={getStatusForMode.backgroundColor} />
       <SafeAreaView
         style={{
           flex: 1,
-          backgroundColor: getBackgroundColorForMode(mode),
+          backgroundColor: getStatusForMode.backgroundColor,
         }}>
-        <View
-          style={{
-            marginHorizontal: 12,
-            borderBottomWidth: 1,
-            paddingVertical: 10,
-            borderColor: config.color.border,
-          }}>
+        <View style={{marginHorizontal: 12, flex: 1}}>
           <View
             style={{
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              alignItems: 'center',
+              borderBottomWidth: 0.5,
+              paddingVertical: 10,
               borderColor: config.color.border,
             }}>
-            <View style={{flexDirection: 'row'}}>
-              <IconFontAwesome5 name="check-circle" />
-              <Text>Pomofocus</Text>
-            </View>
-            <View>
-              <View>
-                <IconFontAwesome5 name="chart-bar" />
+            <View
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                borderColor: config.color.border,
+              }}>
+              <View style={{flexDirection: 'row'}}>
+                <IconFontAwesome5 name="check-circle" />
+                <Text>Pomofocus</Text>
               </View>
               <View>
-                <IconIonicons name="settings-sharp" />
+                <TouchableOpacity>
+                  <IconFontAwesome5 name="chart-bar" />
+                </TouchableOpacity>
+                <TouchableOpacity>
+                  <IconIonicons name="settings-sharp" />
+                </TouchableOpacity>
               </View>
             </View>
           </View>
+
+          <ScrollView>
+            <View
+              style={{
+                backgroundColor: '#ffffff1a',
+                borderRadius: 12,
+                marginVertical: 20,
+                padding: 20,
+              }}>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  justifyContent: 'space-evenly',
+                }}>
+                <TouchableOpacity
+                  activeOpacity={config.layout.activeOpacity}
+                  onPress={() => {
+                    setMode('pomodoro');
+                    setCounting(false);
+                  }}
+                  style={{
+                    borderRadius: 6,
+                    paddingHorizontal: 10,
+                    paddingVertical: 4,
+                    backgroundColor:
+                      mode === 'pomodoro' ? '#00000026' : 'transparent',
+                  }}>
+                  <Text style={styles.text}>Pomodoro</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  activeOpacity={config.layout.activeOpacity}
+                  onPress={() => {
+                    setMode('short_break');
+                    setCounting(false);
+                  }}
+                  style={{
+                    backgroundColor:
+                      mode === 'short_break' ? '#00000026' : 'transparent',
+                    borderRadius: 6,
+                    paddingHorizontal: 12,
+                    paddingVertical: 3,
+                  }}>
+                  <Text style={styles.text}>Short Break</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  activeOpacity={config.layout.activeOpacity}
+                  onPress={() => {
+                    setMode('long_break');
+                    setCounting(false);
+                  }}
+                  style={{
+                    backgroundColor:
+                      mode === 'long_break' ? '#00000026' : 'transparent',
+                    borderRadius: 6,
+                    paddingHorizontal: 12,
+                    paddingVertical: 3,
+                  }}>
+                  <Text style={styles.text}>Long Break</Text>
+                </TouchableOpacity>
+              </View>
+
+              <Timer timeCountDown={timeCountDown} counting={isCounting} />
+
+              <View>
+                <BaseButton
+                  label={isCounting ? 'Stop' : 'Start'}
+                  uppercase
+                  textStyle={{
+                    color: getStatusForMode,
+                  }}
+                  color={config.color.white}
+                  onPress={() => {
+                    setCounting(prev => !prev);
+                  }}
+                  containerStyle={{width: '50%'}}
+                />
+              </View>
+            </View>
+          </ScrollView>
         </View>
-        <Button title="Solid Button" />
-
-        <Button title="Outline button" type="outline" />
-
-        <Button
-          title="Clear button"
-          type="clear"
-          iconRight
-          icon={<IconFontAwesome5 name="check-circle" />}
-        />
       </SafeAreaView>
     </ThemeProvider>
   );
@@ -84,6 +177,8 @@ const PomoFocusScreen = ({navigation}: PomoFocusProps) => {
 const styles = StyleSheet.create({
   text: {
     color: config.color.typography.textLight,
+    fontWeight: '600',
+    fontSize: 16,
   },
 });
 

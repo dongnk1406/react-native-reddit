@@ -8,7 +8,7 @@ import {
 import IconAntDesign from 'react-native-vector-icons/AntDesign';
 import IconOcticons from 'react-native-vector-icons/Octicons';
 import IconFontAwesome from 'react-native-vector-icons/FontAwesome';
-
+import IconFontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {config, isIphoneX} from 'app-config';
 import {navBarTitle, navigationStrings} from 'src/navigation/constants';
 import {AuthContext} from 'src/theme/context';
@@ -103,7 +103,7 @@ const CustomDrawer = (props: CustomDrawerProps) => {
 
           <DrawerItem
             icon={({color, size}) => (
-              <IconAntDesign name="profile" size={size} color={color} />
+              <IconFontAwesome5 name="check-circle" size={size} color={color} />
             )}
             style={styles.drawerItem}
             label={navBarTitle.POMO_FOCUS}

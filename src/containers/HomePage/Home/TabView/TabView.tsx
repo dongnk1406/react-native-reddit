@@ -11,6 +11,7 @@ function TabView({}: TabViewProps) {
   return (
     <Tab.Navigator
       screenOptions={{
+        tabBarScrollEnabled: true,
         tabBarContentContainerStyle: {
           alignItems: 'center',
           justifyContent: 'center',
@@ -21,10 +22,11 @@ function TabView({}: TabViewProps) {
           fontSize: 14,
           textTransform: 'capitalize',
         },
-
+        tabBarItemStyle: {
+          width: 100,
+        },
+        tabBarIndicatorContainerStyle: {},
         tabBarIndicatorStyle: {
-          width: '20%',
-          left: '15%',
           backgroundColor: config.color.primary,
         },
       }}>
