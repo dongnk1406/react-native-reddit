@@ -7,7 +7,19 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint ."
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "init-project": "react-native eject && yarn pod-install",
+    "pod-install": "cd ios && pod install && cd .. && npx jetifier",
+    "patch-install": "patch-package --use-yarn",
+    "postinstall": "yarn patch-install && yarn pod-install",
+    "check-update": "ncu -u",
+    "no-edit": "git add . && git commit --amend --no-edit && git push origin HEAD -f",
+    "no-verify": "git add . && git commit --amend --no-edit --no-verify && git push origin HEAD -f",
+    "prepare": "husky install",
+    "android-build-apk-develop": "rm -rf build && rm -rf android/build && cd android && ./gradlew assembleDevRelease && cd ..",
+    "open-folder-apk": "open ./android/app/build/outputs/apk",
+    "open-folder-aab": "open ./android/app/build/outputs/bundle",
+    "debug-keystore": "cd android/app && keytool -list -v -keystore debug.keystore -alias androiddebugkey -storepass android -keypass android && cd -"
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^1.17.9",

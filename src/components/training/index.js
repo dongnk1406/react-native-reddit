@@ -5,7 +5,6 @@ import Wordle from './Wordle';
 import Sun from './Sun';
 import AnalogClock from './AnalogClock';
 import Game2048 from './game2048/components';
-import GameContainer from './Game';
 
 export {
   ListFruits,
@@ -15,5 +14,4 @@ export {
   Sun,
   AnalogClock,
   Game2048,
-  GameContainer
 };
