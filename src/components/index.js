@@ -4,5 +4,4 @@ import CustomSwitch from './CustomSwitch';
 export * from './BaseComponent';
 export * from './training';
 
-
 export {BannerSlider, ListGame, CustomSwitch};

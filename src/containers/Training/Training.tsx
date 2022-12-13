@@ -10,7 +10,6 @@ import {
   Sun,
   AnalogClock,
   Game2048,
-  GameContainer,
 } from 'src/components/training';
 
 const trainings = [
@@ -21,7 +20,6 @@ const trainings = [
   Sun,
   AnalogClock,
   Game2048,
-  GameContainer,
 ];
 
 const trainingsTitle = [
@@ -32,7 +30,6 @@ const trainingsTitle = [
   'Sun',
   'Analog Clock',
   'Game 2048',
-  'Game 2048 version 2',
 ];
 
 function TrainingScreen({navigation}) {
