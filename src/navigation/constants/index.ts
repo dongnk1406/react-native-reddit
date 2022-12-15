@@ -20,7 +20,7 @@ const navigationStrings = {
   SIGN_OUT: 'SignOut',
   POLICY: 'Policy',
   BOOK_MARK: 'BookMark',
-  POMO_FOCUS: 'Pomofoucs'
+  POMO_FOCUS: 'Pomofoucs',
 };
 
 const navBarTitle = {
@@ -46,7 +46,7 @@ const navBarTitle = {
   SIGN_OUT: 'Sign out',
   POLICY: 'Policy',
   BOOK_MARK: 'Book mark',
-  POMO_FOCUS: 'Pomo foucs'
+  POMO_FOCUS: 'Pomo foucs',
 };
 
 export {navigationStrings, navBarTitle};

@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {
   View,
   Text,
@@ -15,6 +15,8 @@ import {config} from 'app-config';
 import {NewsProps, Post} from '.';
 import {navigationStrings} from 'src/navigation';
 import FastImage from 'react-native-fast-image';
+import Share from 'react-native-share';
+import Modal from 'react-native-modal';
 
 const url = `https://62ff2c7134344b6431f3db0c.mockapi.io/api/v1/list-friend`;
 
@@ -43,7 +45,8 @@ const IMAGE_SIZE = (config.layout.windowWidth - 20) / 3;
 
 export default function NewsScreen({navigation}: NewsProps) {
   const {data, error} = useFetch<Post[]>(url);
-  const [refreshing, setRefreshing] = React.useState<boolean>(false);
+  const [refreshing, setRefreshing] = useState<boolean>(false);
+  const [isModalVisible, setModalVisible] = useState(false);
 
   const onRefresh = React.useCallback(async () => {
     setRefreshing(true);
@@ -51,6 +54,10 @@ export default function NewsScreen({navigation}: NewsProps) {
       setRefreshing(false);
     }, 1000);
   }, []);
+
+  const toggleModal = () => {
+    setModalVisible(!isModalVisible);
+  };
 
   useEffect(() => {
     Linking.getInitialURL()
@@ -87,7 +94,12 @@ export default function NewsScreen({navigation}: NewsProps) {
   return (
     <ScrollView
       refreshControl={
-        <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        <RefreshControl
+          refreshing={refreshing}
+          onRefresh={onRefresh}
+          colors={[config.color.primary]}
+          tintColor={config.color.primary}
+        />
       }>
       <View>
         <OpenURLButton url={supportedURL}>Open Supported URL</OpenURLButton>
@@ -98,6 +110,41 @@ export default function NewsScreen({navigation}: NewsProps) {
             await Linking.openSettings();
           }}
         />
+        <Button
+          title="Share"
+          onPress={async () => {
+            try {
+              const shareResponse = await Share.open({
+                title: 'Share title',
+                subject: 'https://awesome.contents.com/',
+                message: 'Share message',
+              });
+              console.log('res', shareResponse);
+            } catch (error) {
+              console.log(error);
+            }
+          }}
+        />
+
+        <Button title="Open Modal" onPress={toggleModal} />
+        <Modal
+          isVisible={isModalVisible}
+          coverScreen={true}
+          backdropOpacity={0.4}
+          backdropColor={config.color.black}
+          onBackdropPress={() => setModalVisible(false)}>
+          <View
+            style={{
+              height: 50,
+              backgroundColor: 'white',
+              borderRadius: 8,
+              justifyContent: 'center',
+            }}>
+            <Text style={{textAlign: 'center'}}>
+              This is the modal content!
+            </Text>
+          </View>
+        </Modal>
       </View>
       <View
         style={{
