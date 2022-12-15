@@ -14,6 +14,7 @@ export const store = configureStore({
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
     }).concat(sagaMiddleware),
+  devTools: __DEV__,
 });
 
 sagaMiddleware.run(rootSaga);

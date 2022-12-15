@@ -10,3 +10,9 @@ Clone reddit blog
 
 ## Deep Link
 - my-dream-app://
+
+## Need to do
+- Dropdown
+- Accordion List
+- Checkbox
+- Chart
