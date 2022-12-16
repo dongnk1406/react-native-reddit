@@ -33,6 +33,7 @@ module.exports = {
           'app-util': './src/util',
           'app-config': './src/config',
           'src': './src',
+          'app-type': './src/type',
         },
       },
     ],

@@ -7,9 +7,9 @@ import {
   Profile,
   Setting,
   PomoFocus,
-} from '../containers';
+} from '../../containers';
 import {config} from 'app-config';
-import {navBarTitle, navigationStrings} from './constants';
+import {navBarTitle, navigationStrings} from '../config/constants';
 import {ListFriend} from 'src/containers/Profile';
 import {CustomDrawer} from 'src/components';
 

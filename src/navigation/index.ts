@@ -1,7 +1,8 @@
-import AppStack from './AppStack';
-import AuthStack from './AuthStack';
-import DrawerStack from './DrawerStack';
+import AppStack from './scenes/AppStack';
+import AuthStack from './scenes/AuthStack';
+import DrawerStack from './scenes/DrawerStack';
 
-export * from './constants';
-export * from './routes';
+export * from './config/constants';
+export * from './config/routes';
+export * from './config/service';
 export {AppStack, AuthStack, DrawerStack};

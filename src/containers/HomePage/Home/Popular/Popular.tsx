@@ -1,16 +1,21 @@
-import React, {useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import {v4 as uuidv4} from 'uuid';
 import {Button, ScrollView, Text, TextInput, View} from 'react-native';
 import {BaseButton} from 'src/components';
 import {useAppDispatch, useAppSelector} from 'src/hooks';
 import {config} from 'app-config';
-import {RootState} from 'src/store';
-import {addCustomer} from 'src/store/slices/customerSlice';
+import {RootState} from 'src/redux';
+import {
+  addCustomer,
+  addUserThunk,
+  fetchUserThunk,
+} from 'src/redux/slices/customerSlice';
 import {
   addReservation,
   removeReservation,
-} from 'src/store/slices/reservationSlice';
+} from 'src/redux/slices/reservationSlice';
 import {PopularProps} from '.';
+import {useFocusEffect} from '@react-navigation/native';
 
 function Popular({navigation}: PopularProps) {
   const reservations = useAppSelector(
@@ -18,6 +23,15 @@ function Popular({navigation}: PopularProps) {
   );
   const dispatch = useAppDispatch();
   const [inputText, setInputText] = useState<string>('');
+
+  useFocusEffect(
+    useCallback(() => {
+      dispatch(fetchUserThunk());
+      dispatch(addUserThunk());
+
+      return () => {};
+    }, [dispatch]),
+  );
 
   return (
     <ScrollView>
@@ -50,11 +64,13 @@ function Popular({navigation}: PopularProps) {
                 <Button
                   title="Add"
                   onPress={() => {
-                    addCustomer({
-                      id: uuidv4(),
-                      name: '',
-                      food: ['', ''],
-                    });
+                    dispatch(
+                      addCustomer({
+                        id: uuidv4(),
+                        name: '',
+                        food: ['', ''],
+                      }),
+                    );
                   }}
                 />
                 <Button
