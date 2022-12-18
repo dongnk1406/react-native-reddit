@@ -10,7 +10,7 @@ import IconOcticons from 'react-native-vector-icons/Octicons';
 import IconFontAwesome from 'react-native-vector-icons/FontAwesome';
 import IconFontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {config, isIphoneX} from 'app-config';
-import {navBarTitle, navigationStrings} from 'src/navigation/constants';
+import {navBarTitle, navigationStrings} from 'src/navigation/config/constants';
 import {AuthContext} from 'src/theme/context';
 import {CustomDrawerProps} from '.';
 import BaseSwitch from '../BaseSwitch';

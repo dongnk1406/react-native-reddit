@@ -10,8 +10,8 @@ import {
 } from '../../containers';
 import {ListFriend} from 'src/containers/Profile';
 import {TrainingItem} from 'src/containers/Training';
-import DrawerStack from '../DrawerStack';
-import {navigationStrings, navBarTitle} from '../constants';
+import DrawerStack from '../scenes/DrawerStack';
+import {navigationStrings, navBarTitle} from './constants';
 import {config} from 'app-config';
 
 const showOnlyBackButton = {

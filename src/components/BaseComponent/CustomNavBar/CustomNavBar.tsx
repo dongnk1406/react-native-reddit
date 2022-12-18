@@ -19,9 +19,11 @@ const CustomNavBar = (props: CustomNavBarProps) => {
 
   const [searchInput, setSearchInput] = useState<string>('');
 
-  const debounce = useDebounce<string>(searchInput);
+  const searchValue = useDebounce<string>(searchInput);
 
-  useEffect(() => {}, [debounce]);
+  useEffect(() => {
+    console.log('value', searchValue);
+  }, [searchValue]);
 
   const onChangeSearchInput = (value: string) => {
     setSearchInput(value);

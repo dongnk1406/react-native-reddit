@@ -1,6 +1,6 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {Tabs} from 'src/navigation/TabNavigator';
+import {Tabs} from 'src/navigation/scenes/TabNavigator';
 import {config, isAndroidPlatform} from 'app-config';
 import {NavigationProps} from 'src/type';
 

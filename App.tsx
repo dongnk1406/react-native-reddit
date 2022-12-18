@@ -8,7 +8,7 @@ import {NativeBaseProvider} from 'native-base';
 import {StatusBar} from 'react-native';
 import {AppStack, AuthStack} from 'src/navigation';
 import {Launch} from 'src/containers';
-import {store} from 'src/store';
+import {store} from 'src/redux';
 import {AuthContext} from './src/theme/context';
 import {config} from 'app-config';
 
