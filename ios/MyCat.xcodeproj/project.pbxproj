@@ -11,10 +11,10 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		599C25231AB9020434FAE201 /* libPods-MyCat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D9C746CDB6F3EAC731C52F17 /* libPods-MyCat.a */; };
+		5BA39766DA82F79DF681C254 /* libPods-MyCat-MyCatTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FBE9E2DFD8F6E7DE7C8C359 /* libPods-MyCat-MyCatTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		9A13ACE428CF0A8A0022A193 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9A13ACE328CF0A8A0022A193 /* GoogleService-Info.plist */; };
-		AC18E2F1AED99D7F722409A5 /* libPods-MyCat-MyCatTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AC45751EA7157CC8E64BAB6 /* libPods-MyCat-MyCatTests.a */; };
+		D7BD2580FA3490F53EE9CA94 /* libPods-MyCat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F46FB65513D090E8826EB773 /* libPods-MyCat.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,7 +37,7 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = MyCat/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = MyCat/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = MyCat/main.m; sourceTree = "<group>"; };
-		1AC45751EA7157CC8E64BAB6 /* libPods-MyCat-MyCatTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MyCat-MyCatTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3FBE9E2DFD8F6E7DE7C8C359 /* libPods-MyCat-MyCatTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MyCat-MyCatTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4320158B2A6FD34BBB8815E2 /* Pods-MyCat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyCat.release.xcconfig"; path = "Target Support Files/Pods-MyCat/Pods-MyCat.release.xcconfig"; sourceTree = "<group>"; };
 		6715D25B8944B9250DD75AD0 /* Pods-MyCat-MyCatTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyCat-MyCatTests.release.xcconfig"; path = "Target Support Files/Pods-MyCat-MyCatTests/Pods-MyCat-MyCatTests.release.xcconfig"; sourceTree = "<group>"; };
 		791C048829F8120E32DAD741 /* Pods-MyCat-MyCatTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyCat-MyCatTests.debug.xcconfig"; path = "Target Support Files/Pods-MyCat-MyCatTests/Pods-MyCat-MyCatTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -60,8 +60,8 @@
 		9AA5248B27F2E9B200C76F77 /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome5_Brands.ttf; sourceTree = "<group>"; };
 		9AA5248C27F2E9B200C76F77 /* Entypo.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Entypo.ttf; sourceTree = "<group>"; };
 		9AA5248D27F2E9B200C76F77 /* Ionicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ionicons.ttf; sourceTree = "<group>"; };
-		D9C746CDB6F3EAC731C52F17 /* libPods-MyCat.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MyCat.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		F46FB65513D090E8826EB773 /* libPods-MyCat.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MyCat.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,7 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AC18E2F1AED99D7F722409A5 /* libPods-MyCat-MyCatTests.a in Frameworks */,
+				5BA39766DA82F79DF681C254 /* libPods-MyCat-MyCatTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,7 +77,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				599C25231AB9020434FAE201 /* libPods-MyCat.a in Frameworks */,
+				D7BD2580FA3490F53EE9CA94 /* libPods-MyCat.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -120,8 +120,8 @@
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				D9C746CDB6F3EAC731C52F17 /* libPods-MyCat.a */,
-				1AC45751EA7157CC8E64BAB6 /* libPods-MyCat-MyCatTests.a */,
+				F46FB65513D090E8826EB773 /* libPods-MyCat.a */,
+				3FBE9E2DFD8F6E7DE7C8C359 /* libPods-MyCat-MyCatTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

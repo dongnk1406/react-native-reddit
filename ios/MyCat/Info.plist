@@ -41,6 +41,8 @@
 		<string/>
 		<key>NSPhotoLibraryUsageDescription</key>
 		<string>MyCat app required photo library access</string>
+		<key>NSPhotoLibraryAddUsageDescription</key>
+  		<string>MyCat app required photo library access for add</string>
 		<key>UIAppFonts</key>
 		<array>
 			<string>Ionicons.ttf</string>
