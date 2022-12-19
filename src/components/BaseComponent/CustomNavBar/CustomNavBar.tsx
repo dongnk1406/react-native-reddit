@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useRef, useState} from 'react';
 import {
   SafeAreaView,
   TouchableOpacity,
@@ -20,10 +20,6 @@ const CustomNavBar = (props: CustomNavBarProps) => {
   const [searchInput, setSearchInput] = useState<string>('');
 
   const searchValue = useDebounce<string>(searchInput);
-
-  useEffect(() => {
-    console.log('value', searchValue);
-  }, [searchValue]);
 
   const onChangeSearchInput = (value: string) => {
     setSearchInput(value);

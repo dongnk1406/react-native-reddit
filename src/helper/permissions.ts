@@ -9,7 +9,6 @@ import {
   openSettings,
   request,
 } from 'react-native-permissions';
-import ModalConfirm from 'src/components/common/ModalConfirm';
 
 export const checkCamera = async (modal: any) => {
   try {

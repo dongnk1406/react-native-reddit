@@ -4,7 +4,7 @@ export const request = axios.create({
   baseURL: 'https://62ff2c7134344b6431f3db0c.mockapi.io/api/v1',
 });
 
-export const get = async (path: string, options: object) => {
+export const get = async (path: string, options: any) => {
   const response = await request.get(path, options);
   return response.data;
 };

@@ -38,7 +38,11 @@
 		<key>NSCameraUsageDescription</key>
 		<string>MyCat app required camera access</string>
 		<key>NSLocationWhenInUseUsageDescription</key>
-		<string/>
+		<string>MyCat app required location access</string>
+		<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+  		<string>MyCat app required location access always</string>
+		<key>NSLocationAlwaysUsageDescription</key>
+  		<string>NSLocation Always Usage Description</string>
 		<key>NSPhotoLibraryUsageDescription</key>
 		<string>MyCat app required photo library access</string>
 		<key>NSPhotoLibraryAddUsageDescription</key>

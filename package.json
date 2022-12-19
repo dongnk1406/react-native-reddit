@@ -12,17 +12,17 @@
     "pod-install": "cd ios && pod install && cd .. && npx jetifier",
     "patch-install": "patch-package --use-yarn",
     "postinstall": "yarn patch-install && yarn pod-install",
-    "check-update": "ncu -u",
     "ios-clean": "cd ios && pod deintegrate && pod clean",
     "android-clean": "cd android && ./gradlew clean",
     "no-edit": "git add . && git commit --amend --no-edit && git push origin HEAD -f",
     "no-verify": "git add . && git commit --amend --no-edit --no-verify && git push origin HEAD -f",
     "prepare": "husky install",
-    "android-build-apk-develop": "rm -rf build && rm -rf android/build && cd android && ./gradlew assembleDevRelease && cd ..",
+    "android-build-apk-develop": "rm -rf build && rm -rf android/build && cd android && ./gradlew clean && ./gradlew --stop && ./gradlew assembleRelease -x bundleReleaseJsAndAssets && cd ..",
     "open-folder-apk": "open ./android/app/build/outputs/apk",
     "open-folder-aab": "open ./android/app/build/outputs/bundle",
     "debug-keystore": "cd android/app && keytool -list -v -keystore debug.keystore -alias androiddebugkey -storepass android -keypass android && cd -",
-    "adb": "adb reverse tcp:9090 tcp:9090 && adb reverse tcp:3000 tcp:3000 && adb reverse tcp:9001 tcp:9001 && adb reverse tcp:8081 tcp:8081"
+    "upload-keystore": "cd android/app && keytool -genkey -v -keystore com.mycat.keystore -alias com.mycat -keyalg RSA -keysize 2048 -validity 10000",
+    "adb-reactotron": "adb reverse tcp:9090 tcp:9090 && adb reverse tcp:3000 tcp:3000 && adb reverse tcp:9001 tcp:9001 && adb reverse tcp:8081 tcp:8081"
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^1.17.9",
