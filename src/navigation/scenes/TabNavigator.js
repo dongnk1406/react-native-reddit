@@ -1,6 +1,12 @@
 import React from 'react';
 import {CardStyleInterpolators} from '@react-navigation/stack';
-import {Home, Post, Chat, Explore, Notification} from '../../containers/HomePage';
+import {
+  Home,
+  Post,
+  Chat,
+  Explore,
+  Notification,
+} from '../../containers/HomePage';
 import IconIonicons from 'react-native-vector-icons/Ionicons';
 import IconAntDesign from 'react-native-vector-icons/AntDesign';
 import IconEntypo from 'react-native-vector-icons/Entypo';
@@ -67,15 +73,11 @@ const Tabs = [
     name: navigationStrings.NOTIFICATION,
     component: Notification,
     options: ({route}) => ({
-      title: route.params?.headerTitle || navBarTitle.PROFILE,
-      ...lightHeaderStyle,
-    }),
-    options: {
       ...lightHeaderStyle,
       tabBarIcon: ({color}) => {
         return <IconFontAwesome name="bell" size={20} color={color} />;
       },
-    },
+    }),
   },
 ];
 

@@ -1,4 +1,4 @@
-import React, {useEffect, useContext, useState, useCallback} from 'react';
+import React, {useState, useCallback} from 'react';
 
 import {
   View,
@@ -9,48 +9,25 @@ import {
   TouchableOpacity,
   Keyboard,
   TouchableWithoutFeedback,
-  TextInput,
   Alert,
 } from 'react-native';
-import auth from '@react-native-firebase/auth';
 
 import {users} from 'app-data';
 import {config} from 'app-config';
-import {AuthContext} from 'src/theme/context';
 import {InputOtp} from 'src/components';
 import {AuthConfirmProps} from '.';
+import {signIn} from 'src/redux/slices/authSlice';
+import {useAppDispatch} from 'src/hooks';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {setLoading} from 'src/redux/slices/commonSlice';
 
 function AuthConfirmScreen({route, navigation}: AuthConfirmProps) {
   const {phone} = route.params;
   const [token, setToken] = useState<string>('');
-  const [confirm, setConfirm] = useState(null);
-  const [code, setCode] = useState('');
   const [pinLength, setPinLength] = useState<number>(4);
+  const dispatch = useAppDispatch();
 
-  useEffect(() => {
-    const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
-    return subscriber; // unsubscribe on unmount
-  }, []);
-
-  function onAuthStateChanged(user) {
-    console.log(user);
-  }
-
-  async function signInWithPhoneNumber(phoneNumber) {
-    const confirmation = await auth().signInWithPhoneNumber(phoneNumber);
-    setConfirm(confirmation);
-  }
-
-  async function confirmCode() {
-    try {
-      await confirm.confirm(code);
-      Alert.alert('success');
-    } catch (error) {
-      console.log('Invalid code.');
-    }
-  }
-
-  const handleAuthConfirm = useCallback(() => {
+  const handleAuthConfirm = useCallback(async () => {
     const foundUser = users.filter(item => {
       return phone == item.userPhone && token == item.userToken;
     });
@@ -64,25 +41,25 @@ function AuthConfirmScreen({route, navigation}: AuthConfirmProps) {
       return;
     }
 
-    if (foundUser.length == 0) {
+    if (foundUser.length === 0) {
       Alert.alert('Invalid User!', 'Phonenumber or token is incorrect.', [
         {text: 'OK'},
       ]);
       return;
     }
-    signIn(foundUser);
-  }, [token]);
 
-  const {signIn} = useContext(AuthContext);
-
-  // if (!confirm) {
-  //   return (
-  //     <Button
-  //       title="Phone Number Sign In"
-  //       onPress={() => signInWithPhoneNumber('84 374763389')}
-  //     />
-  //   );
-  // }
+    const userToken = String(foundUser[0].userToken);
+    try {
+      dispatch(setLoading(true));
+      await AsyncStorage.setItem('user_token', userToken);
+      dispatch(signIn(foundUser));
+      setTimeout(() => {
+        dispatch(setLoading(false));
+      }, 5000);
+    } catch (error) {
+      console.log(error);
+    }
+  }, [dispatch, phone, token]);
 
   const onChangeCode = useCallback((text: string) => {
     setToken(text);
@@ -145,47 +122,3 @@ const styles = StyleSheet.create({
 });
 
 export default AuthConfirmScreen;
-
-function checkPhone() {
-  // If null, no SMS has been sent
-
-  useEffect(() => {
-    const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
-    return subscriber; // unsubscribe on unmount
-  }, []);
-
-  function onAuthStateChanged(user) {
-    console.log(user);
-  }
-
-  // Handle the button press
-  async function signInWithPhoneNumber(phoneNumber) {
-    const confirmation = await auth().signInWithPhoneNumber(phoneNumber);
-    setConfirm(confirmation);
-  }
-
-  async function confirmCode() {
-    try {
-      await confirm.confirm(code);
-      Alert.alert('success');
-    } catch (error) {
-      console.log('Invalid code.');
-    }
-  }
-
-  if (!confirm) {
-    return (
-      <Button
-        title="Phone Number Sign In"
-        onPress={() => signInWithPhoneNumber('84 374763389')}
-      />
-    );
-  }
-
-  return (
-    <>
-      <TextInput value={code} onChangeText={text => setCode(text)} />
-      <Button title="Confirm Code" onPress={() => confirmCode()} />
-    </>
-  );
-}
