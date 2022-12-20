@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useState} from 'react';
 import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
 import {
   DrawerContentScrollView,
@@ -11,18 +11,20 @@ import IconFontAwesome from 'react-native-vector-icons/FontAwesome';
 import IconFontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {config, isIphoneX} from 'app-config';
 import {navBarTitle, navigationStrings} from 'src/navigation/config/constants';
-import {AuthContext} from 'src/theme/context';
 import {CustomDrawerProps} from '.';
 import BaseSwitch from '../BaseSwitch';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {useAppDispatch} from 'src/hooks';
+import {signOut} from 'src/redux/slices/authSlice';
 
 const CustomDrawer = (props: CustomDrawerProps) => {
   const [isToggleTheme, setToggleTheme] = useState(false);
 
+  const dispatch = useAppDispatch();
+
   const toggleSwitch = () => {
     setToggleTheme(previousState => !previousState);
   };
-
-  const {signOut} = useContext(AuthContext);
 
   return (
     <View style={styles.container}>
@@ -146,8 +148,13 @@ const CustomDrawer = (props: CustomDrawerProps) => {
           style={styles.drawerItem}
           label={navBarTitle.SIGN_OUT}
           labelStyle={styles.drawerLabel}
-          onPress={() => {
-            signOut();
+          onPress={async () => {
+            try {
+              await AsyncStorage.removeItem('user_token');
+              dispatch(signOut());
+            } catch (error) {
+              console.log(error);
+            }
           }}
         />
       </View>
