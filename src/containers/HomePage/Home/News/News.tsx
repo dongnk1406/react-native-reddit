@@ -10,13 +10,16 @@ import {
   Alert,
   Button,
 } from 'react-native';
-import {useFetch} from 'src/hooks';
+import {useFetch, useGeolocation} from 'src/hooks';
 import {config} from 'app-config';
 import {NewsProps, Post} from '.';
 import {navigationStrings} from 'src/navigation';
 import FastImage from 'react-native-fast-image';
 import Share from 'react-native-share';
 import Modal from 'react-native-modal';
+import DeviceInfo from 'react-native-device-info';
+import Geolocation from '@react-native-community/geolocation';
+import {useFocusEffect} from '@react-navigation/native';
 
 const url = `https://62ff2c7134344b6431f3db0c.mockapi.io/api/v1/list-friend`;
 
@@ -47,6 +50,15 @@ export default function NewsScreen({navigation}: NewsProps) {
   const {data, error} = useFetch<Post[]>(url);
   const [refreshing, setRefreshing] = useState<boolean>(false);
   const [isModalVisible, setModalVisible] = useState(false);
+  const [ipAddress, setIpAddress] = useState<string>('');
+  const [_, position] = useGeolocation();
+
+  useFocusEffect(
+    useCallback(() => {
+      Geolocation.getCurrentPosition(info => console.log('info', info));
+      console.log('position', position);
+    }, [position]),
+  );
 
   const onRefresh = React.useCallback(async () => {
     setRefreshing(true);
@@ -73,7 +85,7 @@ export default function NewsScreen({navigation}: NewsProps) {
         });
       })
       .catch(() => {});
-  });
+  }, []);
 
   if (error) {
     return (
@@ -127,6 +139,15 @@ export default function NewsScreen({navigation}: NewsProps) {
         />
 
         <Button title="Open Modal" onPress={toggleModal} />
+        <Button
+          title="Get Ip"
+          onPress={() => {
+            DeviceInfo.getIpAddress().then(ip => {
+              setIpAddress(ip);
+            });
+          }}
+        />
+        {!!ipAddress && <Text>{ipAddress}</Text>}
         <Modal
           isVisible={isModalVisible}
           coverScreen={true}

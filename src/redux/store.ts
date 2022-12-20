@@ -2,7 +2,7 @@ import {configureStore, ThunkAction, Action} from '@reduxjs/toolkit';
 import createSagaMiddleware from 'redux-saga';
 import {FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER} from 'redux-persist';
 import rootSaga from './rootSaga';
-import rootReducer from './slices';
+import rootReducer from './slices/rootReducer';
 
 const sagaMiddleware = createSagaMiddleware();
 

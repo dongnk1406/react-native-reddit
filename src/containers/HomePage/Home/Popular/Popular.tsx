@@ -24,15 +24,6 @@ function Popular({navigation}: PopularProps) {
   const dispatch = useAppDispatch();
   const [inputText, setInputText] = useState<string>('');
 
-  useFocusEffect(
-    useCallback(() => {
-      dispatch(fetchUserThunk());
-      dispatch(addUserThunk());
-
-      return () => {};
-    }, [dispatch]),
-  );
-
   return (
     <ScrollView>
       <View style={{flex: 1}}>

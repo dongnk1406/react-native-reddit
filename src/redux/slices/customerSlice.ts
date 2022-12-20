@@ -1,12 +1,12 @@
 import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit';
 
 interface Customer {
-  id: string;
+  id: string | number;
   name: string;
   food: string[];
 }
 
-interface CustomerState {
+interface ICustomerState {
   value: Customer[];
 }
 
@@ -15,8 +15,14 @@ interface AddFoodToCustomerPayload {
   id: string;
 }
 
-const initialState: CustomerState = {
-  value: [],
+const initialState: ICustomerState = {
+  value: [
+    {
+      id: 1,
+      name: 'Hello',
+      food: ['Cake', 'Cream'],
+    },
+  ],
 };
 
 export const customerSlice = createSlice({
@@ -24,6 +30,12 @@ export const customerSlice = createSlice({
   initialState: initialState,
   reducers: {
     addCustomer: (state, action: PayloadAction<Customer>) => {
+      state.value.push(action.payload);
+    },
+    addFoodCustomer: (
+      state,
+      action: PayloadAction<AddFoodToCustomerPayload>,
+    ) => {
       state.value.push(action.payload);
     },
   },
