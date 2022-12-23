@@ -2,11 +2,11 @@ import React, {useEffect} from 'react';
 import isEqual from 'react-fast-compare';
 import {useAppDispatch, useAppSelector} from 'src/hooks';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {restoreToken} from 'src/redux/slices/authSlice';
+import {restoreToken} from 'src/store/slices/authSlice';
 import AppStack from './AppStack';
 import AuthStack from './AuthStack';
 import {Launch} from 'src/containers';
-import {RootState} from 'src/redux';
+import {RootState} from 'src/store';
 
 const RootStack = () => {
   const userToken = useAppSelector(

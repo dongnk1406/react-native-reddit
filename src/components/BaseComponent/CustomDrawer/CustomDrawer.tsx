@@ -15,7 +15,7 @@ import {CustomDrawerProps} from '.';
 import BaseSwitch from '../BaseSwitch';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useAppDispatch} from 'src/hooks';
-import {signOut} from 'src/redux/slices/authSlice';
+import {signOut} from 'src/store/slices/authSlice';
 
 const CustomDrawer = (props: CustomDrawerProps) => {
   const [isToggleTheme, setToggleTheme] = useState(false);

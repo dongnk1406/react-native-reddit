@@ -16,10 +16,10 @@ import {users} from 'app-data';
 import {config} from 'app-config';
 import {InputOtp} from 'src/components';
 import {AuthConfirmProps} from '.';
-import {signIn} from 'src/redux/slices/authSlice';
+import {signIn} from 'src/store/slices/authSlice';
 import {useAppDispatch} from 'src/hooks';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {setLoading} from 'src/redux/slices/commonSlice';
+import {setLoading} from 'src/store/slices/commonSlice';
 
 function AuthConfirmScreen({route, navigation}: AuthConfirmProps) {
   const {phone} = route.params;
