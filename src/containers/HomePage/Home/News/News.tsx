@@ -9,9 +9,8 @@ import {
   Linking,
   Alert,
   Button,
-  useColorScheme,
 } from 'react-native';
-import {useFetch, useGeolocation} from 'src/hooks';
+import {useAppSelector, useFetch, useGeolocation} from 'src/hooks';
 import {config} from 'app-config';
 import {NewsProps, Post} from '.';
 import {navigationStrings} from 'src/navigation';
@@ -21,6 +20,7 @@ import Modal from 'react-native-modal';
 import DeviceInfo from 'react-native-device-info';
 import Geolocation from '@react-native-community/geolocation';
 import {useFocusEffect} from '@react-navigation/native';
+import AsyncStorageManager from 'src/helper/AsyncStorageManager';
 
 const url = `https://62ff2c7134344b6431f3db0c.mockapi.io/api/v1/list-friend`;
 
@@ -53,15 +53,19 @@ export default function NewsScreen({navigation}: NewsProps) {
   const [isModalVisible, setModalVisible] = useState(false);
   const [ipAddress, setIpAddress] = useState<string>('');
   const [_, position] = useGeolocation();
-  const scheme = useColorScheme();
-  console.log('them', scheme);
+  const [storage, setStorage] = useState<any>();
+  const theme = useAppSelector(state => state.common.theme);
 
   useFocusEffect(
     useCallback(() => {
       Geolocation.getCurrentPosition(info => console.log('info', info));
-      console.log('position', position);
-    }, [position]),
+      AsyncStorageManager.getAllStorage().then(data => setStorage(data));
+    }, []),
   );
+
+  useEffect(() => {
+    console.log('storage', storage);
+  }, [storage, theme]);
 
   const onRefresh = React.useCallback(async () => {
     setRefreshing(true);
@@ -108,6 +112,9 @@ export default function NewsScreen({navigation}: NewsProps) {
 
   return (
     <ScrollView
+      contentContainerStyle={{
+        backgroundColor: theme === 'light' ? 'white' : '#605c5c',
+      }}
       refreshControl={
         <RefreshControl
           refreshing={refreshing}

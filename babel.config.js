@@ -29,7 +29,6 @@ module.exports = {
         ],
         alias: {
           'app-data': './src/data',
-          'app-helper/*': './src/helper/*',
           'app-util': './src/util',
           'app-config': './src/config',
           'src': './src',

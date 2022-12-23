@@ -1,11 +1,17 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
+import {persistReducer} from 'redux-persist';
+import {persistConfig} from './config';
 
 interface ICommonState {
   loading: boolean;
+  theme: string;
+  language: string;
 }
 
 const initialState: ICommonState = {
   loading: false,
+  theme: 'light',
+  language: 'vn',
 };
 
 export const commonSlice = createSlice({
@@ -15,8 +21,18 @@ export const commonSlice = createSlice({
     setLoading: (state, action: PayloadAction<any>) => {
       state.loading = action.payload;
     },
+    setTheme: (state, action: PayloadAction<string>) => {
+      state.theme = action.payload;
+    },
+    setLanguage: (state, action: PayloadAction<string>) => {
+      state.language = action.payload;
+    },
   },
 });
 
-export const commonReducer = commonSlice.reducer;
-export const {setLoading} = commonSlice.actions;
+export const commonReducer = persistReducer(
+  persistConfig('common'),
+  commonSlice.reducer,
+);
+
+export const {setLoading, setTheme, setLanguage} = commonSlice.actions;

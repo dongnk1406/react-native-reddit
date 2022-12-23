@@ -4,7 +4,7 @@ import {persistStore} from 'redux-persist';
 import {PersistGate} from 'redux-persist/integration/react';
 import {NavigationContainer} from '@react-navigation/native';
 import {NativeBaseProvider} from 'native-base';
-import {ActivityIndicator, StatusBar, View, Text} from 'react-native';
+import {ActivityIndicator, StatusBar} from 'react-native';
 import {navigationRef} from 'src/navigation';
 import {store} from 'src/store';
 import {config} from 'app-config';
