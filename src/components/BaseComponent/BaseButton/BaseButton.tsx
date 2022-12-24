@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {Text, TouchableOpacity, View} from 'react-native';
 import {config} from 'app-config';
 import {BaseButtonProps} from '.';
-import {hexToRgba} from 'app-helper';
+import {hexToRgba} from 'src/helper';
 
 const BaseButton = ({
   label,

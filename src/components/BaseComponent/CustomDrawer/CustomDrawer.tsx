@@ -1,5 +1,12 @@
 import React, {useState} from 'react';
-import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  TouchableOpacity,
+  useColorScheme,
+} from 'react-native';
 import {
   DrawerContentScrollView,
   DrawerItem,
@@ -16,14 +23,19 @@ import BaseSwitch from '../BaseSwitch';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useAppDispatch} from 'src/hooks';
 import {signOut} from 'src/store/slices/authSlice';
+import {setTheme} from 'src/store/slices/commonSlice';
 
 const CustomDrawer = (props: CustomDrawerProps) => {
-  const [isToggleTheme, setToggleTheme] = useState(false);
-
   const dispatch = useAppDispatch();
+  const theme = useColorScheme();
+  const [isToggleTheme, setToggleTheme] = useState(theme !== 'light');
+  const [themeState, setThemeState] = useState(theme);
 
-  const toggleSwitch = () => {
+  const toggleSwitch = async () => {
     setToggleTheme(previousState => !previousState);
+    const themeMode = themeState === 'light' ? 'dark' : 'light';
+    setThemeState(themeMode);
+    dispatch(setTheme(themeMode));
   };
 
   return (

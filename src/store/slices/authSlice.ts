@@ -1,4 +1,6 @@
+import {persistReducer} from 'redux-persist';
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
+import {persistConfig} from './config';
 
 interface User {
   userPhone: string | null;
@@ -15,7 +17,6 @@ export const authSlice = createSlice({
   initialState: initialState,
   reducers: {
     signIn: (state, action: PayloadAction<any>) => {
-      console.log(action.payload);
       state.userToken = action.payload[0]?.userToken;
       state.userPhone = action.payload[0]?.userPhone;
     },
@@ -29,5 +30,8 @@ export const authSlice = createSlice({
   },
 });
 
-export const authReducer = authSlice.reducer;
+export const authReducer = persistReducer(
+  persistConfig('authentication'),
+  authSlice.reducer,
+);
 export const {signIn, signOut, restoreToken} = authSlice.actions;

@@ -1,7 +1,4 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import {persistReducer} from 'redux-persist';
-
 interface ReservationState {
   value: string[];
 }
@@ -23,14 +20,5 @@ export const reservationSlice = createSlice({
   },
 });
 
-const reservationPersistConfig = {
-  key: 'reservation',
-  storage: AsyncStorage,
-  // whitelist: ['navigation'],
-};
-
-export const reservationReducer = persistReducer(
-  reservationPersistConfig,
-  reservationSlice.reducer,
-);
+export const reservationReducer = reservationSlice.reducer;
 export const {addReservation, removeReservation} = reservationSlice.actions;
