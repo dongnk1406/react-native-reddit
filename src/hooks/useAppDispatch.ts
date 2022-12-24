@@ -1,5 +1,5 @@
 import {useDispatch} from 'react-redux';
-import {AppDispatch} from 'src/redux';
+import {AppDispatch} from 'src/store';
 
 // use through your app instead of plain 'useDispatch' because you don't need add type anytime like use useDispatch
 /* While it's possible to import the RootState and AppDispatch types into each component, 

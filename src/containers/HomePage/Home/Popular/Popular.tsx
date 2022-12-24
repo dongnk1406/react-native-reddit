@@ -4,16 +4,16 @@ import {Button, ScrollView, Text, TextInput, View} from 'react-native';
 import {BaseButton} from 'src/components';
 import {useAppDispatch, useAppSelector} from 'src/hooks';
 import {config} from 'app-config';
-import {RootState} from 'src/redux';
+import {RootState} from 'src/store';
 import {
   addCustomer,
   addUserThunk,
   fetchUserThunk,
-} from 'src/redux/slices/customerSlice';
+} from 'src/store/slices/customerSlice';
 import {
   addReservation,
   removeReservation,
-} from 'src/redux/slices/reservationSlice';
+} from 'src/store/slices/reservationSlice';
 import {PopularProps} from '.';
 import {useFocusEffect} from '@react-navigation/native';
 

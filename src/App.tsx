@@ -6,7 +6,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {NativeBaseProvider} from 'native-base';
 import {ActivityIndicator, StatusBar, View, Text} from 'react-native';
 import {navigationRef} from 'src/navigation';
-import {store} from 'src/redux';
+import {store} from 'src/store';
 import {config} from 'app-config';
 import RootStack from './navigation/scenes/RootStack';
 

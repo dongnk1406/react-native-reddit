@@ -9,6 +9,7 @@ import {
   Linking,
   Alert,
   Button,
+  useColorScheme,
 } from 'react-native';
 import {useFetch, useGeolocation} from 'src/hooks';
 import {config} from 'app-config';
@@ -52,6 +53,8 @@ export default function NewsScreen({navigation}: NewsProps) {
   const [isModalVisible, setModalVisible] = useState(false);
   const [ipAddress, setIpAddress] = useState<string>('');
   const [_, position] = useGeolocation();
+  const scheme = useColorScheme();
+  console.log('them', scheme);
 
   useFocusEffect(
     useCallback(() => {

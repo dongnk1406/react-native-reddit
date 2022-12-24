@@ -1,5 +1,5 @@
 import {TypedUseSelectorHook, useSelector} from 'react-redux';
-import {RootState} from 'src/redux';
+import {RootState} from 'src/store';
 
 // use through your app instead of plain 'useSelector' because you don't need add type anytime like use useSelector
 /* While it's possible to import the RootState and AppDispatch types into each component, 
