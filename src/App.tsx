@@ -9,6 +9,7 @@ import {navigationRef} from 'src/navigation';
 import {store} from 'src/store';
 import {config} from 'app-config';
 import RootStack from './navigation/scenes/RootStack';
+import FlashMessage from 'react-native-flash-message';
 
 interface AppProps {}
 let persistor = persistStore(store);
@@ -24,6 +25,7 @@ const App = ({}: AppProps) => {
               barStyle="default"
             />
             <RootStack />
+            <FlashMessage position="top" />
           </NavigationContainer>
         </NativeBaseProvider>
       </PersistGate>
