@@ -11,8 +11,6 @@ import {config} from 'app-config';
 import RootStack from './navigation/scenes/RootStack';
 import FlashMessage from 'react-native-flash-message';
 
-console.log('test');
-
 interface AppProps {}
 let persistor = persistStore(store);
 
