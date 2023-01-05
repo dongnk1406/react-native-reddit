@@ -5,6 +5,7 @@ import {navigationStrings} from 'src/navigation';
 export const navigationRef: RefObject<any> = React.createRef();
 
 export function navigate(name: string, params = {}): void {
+  console.log('screen', name);
   navigationRef.current.navigate(name, params);
 }
 

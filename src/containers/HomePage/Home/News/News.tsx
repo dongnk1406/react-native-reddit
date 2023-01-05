@@ -21,6 +21,7 @@ import DeviceInfo from 'react-native-device-info';
 import Geolocation from '@react-native-community/geolocation';
 import {useFocusEffect} from '@react-navigation/native';
 import AsyncStorageManager from 'src/helper/AsyncStorageManager';
+import {useTheme} from 'src/theme';
 import {showMessage} from 'react-native-flash-message';
 
 const url = `https://62ff2c7134344b6431f3db0c.mockapi.io/api/v1/list-friend`;
@@ -60,13 +61,11 @@ export default function NewsScreen({navigation}: NewsProps) {
   useFocusEffect(
     useCallback(() => {
       Geolocation.getCurrentPosition(info => console.log('info', info));
-      AsyncStorageManager.getAllStorage().then(data => setStorage(data));
+      AsyncStorageManager.getAllStorage().then(data =>
+        console.log('data', data),
+      );
     }, []),
   );
-
-  useEffect(() => {
-    console.log('storage', storage);
-  }, [storage, theme]);
 
   const onRefresh = React.useCallback(async () => {
     setRefreshing(true);
