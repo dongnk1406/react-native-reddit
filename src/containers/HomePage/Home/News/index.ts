@@ -1,8 +1,9 @@
-import { NavigationProps } from 'src/type';
+import {NavigationProps} from 'src/type';
 
 export {default} from './News';
 
 export interface NewsProps extends NavigationProps {
+  currentIndex?: number;
 }
 
 export interface Post {

@@ -18,12 +18,12 @@ import IconFontAwesome from 'react-native-vector-icons/FontAwesome';
 import IconFontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {config, isIphoneX} from 'app-config';
 import {navBarTitle, navigationStrings} from 'src/navigation/config/constants';
-import {CustomDrawerProps} from '.';
-import BaseSwitch from '../BaseSwitch';
+import BaseSwitch from '../BaseSwitch/BaseSwitch';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useAppDispatch} from 'src/hooks';
 import {signOut} from 'src/store/slices/authSlice';
 import {setTheme} from 'src/store/slices/commonSlice';
+import {CustomDrawerProps} from '.';
 
 const CustomDrawer = (props: CustomDrawerProps) => {
   const dispatch = useAppDispatch();

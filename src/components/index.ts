@@ -1,7 +1,7 @@
-import BannerSlider from './BannerSlider';
+import BannerSlider from './base/BannerSlider';
 import ListGame from './ListGame';
 import CustomSwitch from './CustomSwitch';
-export * from './BaseComponent';
+export * from './base';
 export * from './training';
 
 export {BannerSlider, ListGame, CustomSwitch};
