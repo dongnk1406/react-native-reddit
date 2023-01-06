@@ -1,7 +1,6 @@
 import React from 'react';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import {
-  HomePage,
   BookMark,
   Training,
   Profile,
@@ -12,6 +11,7 @@ import {config} from 'app-config';
 import {navBarTitle, navigationStrings} from '../config/constants';
 import {ListFriend} from 'src/containers/Profile';
 import {CustomDrawer} from 'src/components';
+import TabNavigator from './TabNavigator';
 
 const Drawer = createDrawerNavigator();
 
@@ -34,7 +34,7 @@ function DrawerStack({navigation}) {
       }}>
       <Drawer.Screen
         name={navigationStrings.HOME_PAGE}
-        component={HomePage}
+        component={TabNavigator}
         options={{
           headerShown: false,
         }}

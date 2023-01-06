@@ -9,5 +9,5 @@ export type TStyle = StyleProp<TItemStyle> | StyleProp<TItemStyle>[];
 export type TNavigationProp = NavigationProp<ParamListBase>;
 
 export interface NavigationProps {
-  navigation: TNavigationProp;
+  navigation?: TNavigationProp;
 }

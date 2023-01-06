@@ -5,7 +5,6 @@ import {
   Profile,
   AuthConfirm,
   Training,
-  HomePage,
   BookMark,
 } from '../../containers';
 import {ListFriend} from 'src/containers/Profile';
@@ -13,6 +12,7 @@ import {TrainingItem} from 'src/containers/Training';
 import DrawerStack from '../scenes/DrawerStack';
 import {navigationStrings, navBarTitle} from './constants';
 import {config} from 'app-config';
+import TabNavigator from '../scenes/TabNavigator';
 
 const showOnlyBackButton = {
   title: '',
@@ -64,7 +64,7 @@ const privateRoutes = [
   },
   {
     name: navigationStrings.HOME_PAGE,
-    component: HomePage,
+    component: TabNavigator,
     options: ({route}) => ({
       title: route.params?.headerTitle || navBarTitle.HOME_PAGE,
       headerShown: false,

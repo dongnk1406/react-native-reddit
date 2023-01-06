@@ -7,5 +7,4 @@ import Post from './Post';
 import Notification from './Notification';
 
 // export
-export {default} from './HomePage';
 export {Home, Chat, Explore, PomoTimer, Post, Notification};
