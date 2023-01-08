@@ -23,6 +23,11 @@ import {useFocusEffect} from '@react-navigation/native';
 import AsyncStorageManager from 'src/helper/AsyncStorageManager';
 import {useTheme} from 'src/theme';
 import {showMessage} from 'react-native-flash-message';
+import {
+  checkNotifications,
+  requestNotifications,
+} from 'react-native-permissions';
+import {getFCMToken, notificationHandler} from 'src/helper/pushNotification';
 
 const url = `https://62ff2c7134344b6431f3db0c.mockapi.io/api/v1/list-friend`;
 
@@ -54,16 +59,13 @@ export default function NewsScreen({navigation}: NewsProps) {
   const [refreshing, setRefreshing] = useState<boolean>(false);
   const [isModalVisible, setModalVisible] = useState(false);
   const [ipAddress, setIpAddress] = useState<string>('');
-  const [_, position] = useGeolocation();
-  const [storage, setStorage] = useState<any>();
+  const [token, setToken] = useState<any>();
   const theme = useAppSelector(state => state.common.theme);
 
   useFocusEffect(
     useCallback(() => {
-      Geolocation.getCurrentPosition(info => console.log('info', info));
-      AsyncStorageManager.getAllStorage().then(data =>
-        console.log('data', data),
-      );
+     console.log('token', token);
+     notificationHandler();
     }, []),
   );
 
@@ -77,6 +79,12 @@ export default function NewsScreen({navigation}: NewsProps) {
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
   };
+
+
+  const test =async () => {
+    const res = await getFCMToken();
+    setToken(res);
+  }
 
   useEffect(() => {
     Linking.getInitialURL()

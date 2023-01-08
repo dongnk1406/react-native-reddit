@@ -33,7 +33,7 @@ function TabStacks() {
       component: Home,
       options: {
         headerShown: false,
-        tabBarIcon: ({color, size}) => {
+        tabBarIcon: ({color}) => {
           return <IconEntypo name="home" size={20} color={color} />;
         },
       },
@@ -44,7 +44,7 @@ function TabStacks() {
       options: {
         headerShown: false,
         tabBarIcon: ({color}) => {
-          return <IconEntypo name="grooveshark" size={20} color={color} />;
+          return <IconAntDesign name="search1" size={20} color={color} />;
         },
       },
     },
