@@ -1,6 +1,8 @@
 require_relative '../node_modules/react-native/scripts/react_native_pods'
 require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
 platform :ios, '11.0'
+# Override Firebase SDK Version
+$FirebaseSDKVersion = '10.3.0'
 
 # Convert all permission pods into static libraries
 pre_install do |installer|
@@ -46,6 +48,7 @@ target 'MyCat' do
   #
   # Note that if you have use_frameworks! enabled, Flipper will not work and
   # you should disable the next line.
+  # use_frameworks!
   use_flipper!()
 
   post_install do |installer|

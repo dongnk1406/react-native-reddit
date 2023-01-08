@@ -6,7 +6,7 @@ import Popular from './Popular';
 import {TabView, TabBar} from 'react-native-tab-view';
 import {Text} from 'react-native';
 
-const marginIndicator = (config.layout.windowWidth / 2 - 30) / 2;
+const marginIndicator = (config.layout.windowWidth / 2 - 40) / 2;
 
 function Home(props) {
   const [index, setIndex] = useState<number>(0);
@@ -35,7 +35,7 @@ function Home(props) {
             indicatorContainerStyle={{marginHorizontal: marginIndicator}}
             indicatorStyle={{
               backgroundColor: config.color.primary,
-              width: 30,
+              width: 40,
               height: 4,
               borderTopRightRadius: 8,
               borderTopLeftRadius: 8,
