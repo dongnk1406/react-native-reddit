@@ -5,7 +5,6 @@ import {BaseButton} from 'src/components';
 import {
   Wordle,
   ListFruits,
-  FinanceManagement,
   TimeSelector,
   Sun,
   AnalogClock,
@@ -14,7 +13,6 @@ import {
 
 const trainings = [
   ListFruits,
-  FinanceManagement,
   TimeSelector,
   Wordle,
   Sun,
@@ -24,7 +22,6 @@ const trainings = [
 
 const trainingsTitle = [
   'List Fruits',
-  'Finance Management',
   'Time Selector',
   'Wordle',
   'Sun',

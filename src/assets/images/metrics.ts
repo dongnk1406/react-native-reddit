@@ -1,6 +1,6 @@
-import {Dimensions} from 'react-native';
 import {vs} from 'react-native-size-matters';
 import StaticSafeAreaInsets from 'react-native-static-safe-area-insets';
+import {Dimensions, StatusBar} from 'react-native';
 
 const {width, height} = Dimensions.get('window');
 
@@ -15,6 +15,7 @@ const Metrics = {
     StaticSafeAreaInsets.safeAreaInsetsTop > 30
       ? StaticSafeAreaInsets.safeAreaInsetsTop
       : vs(20),
+  statusBarHeight: StatusBar.currentHeight,
 };
 
 export default Metrics;

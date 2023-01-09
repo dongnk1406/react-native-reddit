@@ -19,7 +19,7 @@ import Share from 'react-native-share';
 import Modal from 'react-native-modal';
 import DeviceInfo from 'react-native-device-info';
 import Geolocation from '@react-native-community/geolocation';
-import {useFocusEffect} from '@react-navigation/native';
+import {useFocusEffect, useNavigation} from '@react-navigation/native';
 import AsyncStorageManager from 'src/helper/AsyncStorageManager';
 import {useTheme} from 'src/theme';
 import {showMessage} from 'react-native-flash-message';
@@ -54,18 +54,19 @@ const OpenURLButton = ({url, children}: {url: string; children?: any}) => {
 
 const IMAGE_SIZE = (config.layout.windowWidth - 20) / 3;
 
-export default function NewsScreen({navigation}: NewsProps) {
+export default function NewsScreen() {
   const {data, error} = useFetch<Post[]>(url);
   const [refreshing, setRefreshing] = useState<boolean>(false);
   const [isModalVisible, setModalVisible] = useState(false);
   const [ipAddress, setIpAddress] = useState<string>('');
   const [token, setToken] = useState<any>();
   const theme = useAppSelector(state => state.common.theme);
+  const navigation = useNavigation();
 
   useFocusEffect(
     useCallback(() => {
-     console.log('token', token);
-     notificationHandler();
+      console.log('token', token);
+      notificationHandler();
     }, []),
   );
 
@@ -80,11 +81,10 @@ export default function NewsScreen({navigation}: NewsProps) {
     setModalVisible(!isModalVisible);
   };
 
-
-  const test =async () => {
+  const test = async () => {
     const res = await getFCMToken();
     setToken(res);
-  }
+  };
 
   useEffect(() => {
     Linking.getInitialURL()

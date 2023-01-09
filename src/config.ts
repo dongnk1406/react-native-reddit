@@ -1,4 +1,4 @@
-import {Dimensions, Platform, StatusBar} from 'react-native';
+import {Dimensions, Platform} from 'react-native';
 const windowWidth = Dimensions.get('screen').width;
 const windowHeight = Dimensions.get('screen').height;
 
@@ -7,7 +7,6 @@ const isIphoneX =
 
 const isIOSPlatform = Platform.OS === 'ios';
 const isAndroidPlatform = Platform.OS === 'android';
-const heightStatusBar = StatusBar.currentHeight;
 
 const config = {
   color: {
@@ -58,4 +57,4 @@ const config = {
     activeOpacity: 0.6,
   },
 };
-export {config, isIphoneX, isIOSPlatform, isAndroidPlatform, heightStatusBar};
+export {config, isIphoneX, isIOSPlatform, isAndroidPlatform};
