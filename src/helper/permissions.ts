@@ -10,74 +10,64 @@ import {
   request,
 } from 'react-native-permissions';
 
-export const checkCamera = async (modal: any) => {
+enum EPermission {
+  PHOTO = 'photo',
+  CAMERA = 'camera',
+  LOCATION = 'location',
+  AUDIO = 'audio',
+}
+
+export const checkCamera = async () => {
+  const requestPermission = isIOSPlatform
+    ? PERMISSIONS.IOS.CAMERA
+    : PERMISSIONS.ANDROID.CAMERA;
   try {
-    const checkPermission = await check(
-      isIOSPlatform ? PERMISSIONS.IOS.CAMERA : PERMISSIONS.ANDROID.CAMERA,
-    );
-    if (checkPermission === RESULTS.BLOCKED) {
-      ModalConfirm({
-        modal,
-        title: 'permissions.camera.title',
-        content: 'permissions.camera.content',
-        textConfirm: 'common.settings',
-        textCancel: 'common.no',
-        onConfirm: () => {
-          openSettings().catch(() => console.log('cannot open settings'));
-        },
-      });
-      return false;
+    const checkPermission = await check(requestPermission);
+    switch (checkPermission) {
+      case RESULTS.BLOCKED:
+        showRequestPermission(EPermission.CAMERA);
+        return false;
+      case RESULTS.DENIED:
+        const result = await request(requestPermission);
+        if (result === RESULTS.BLOCKED) {
+          showRequestPermission(EPermission.CAMERA);
+        }
+        return result === RESULTS.GRANTED;
+      case RESULTS.UNAVAILABLE:
+        showPermissionUnavailable(EPermission.CAMERA);
+        return false;
+      default:
+        return true;
     }
-    if (checkPermission === RESULTS.DENIED) {
-      const result = await request(
-        isIOSPlatform ? PERMISSIONS.IOS.CAMERA : PERMISSIONS.ANDROID.CAMERA,
-      );
-      return result === RESULTS.GRANTED;
-    }
-    if (checkPermission === RESULTS.UNAVAILABLE) {
-      showPermissionUnavailable('camera');
-      return false;
-    }
-    return true;
   } catch (err) {
     console.log(err);
     return false;
   }
 };
 
-export const checkPhoto = async (modal: any) => {
+export const checkPhoto = async () => {
+  const requestPermission = isIOSPlatform
+    ? PERMISSIONS.IOS.PHOTO_LIBRARY
+    : PERMISSIONS.ANDROID.READ_EXTERNAL_STORAGE;
+
   try {
-    const checkPermission = await check(
-      isIOSPlatform
-        ? PERMISSIONS.IOS.PHOTO_LIBRARY
-        : PERMISSIONS.ANDROID.READ_EXTERNAL_STORAGE,
-    );
-    if (checkPermission === RESULTS.BLOCKED) {
-      ModalConfirm({
-        modal,
-        title: 'permissions.photo.title',
-        content: 'permissions.photo.content',
-        textConfirm: 'common.settings',
-        textCancel: 'common.no',
-        onConfirm: () => {
-          openSettings().catch(() => console.log('cannot open settings'));
-        },
-      });
-      return false;
+    const checkPermission = await check(requestPermission);
+    switch (checkPermission) {
+      case RESULTS.BLOCKED:
+        showRequestPermission(EPermission.PHOTO);
+        return false;
+      case RESULTS.DENIED:
+        const result = await request(requestPermission);
+        if (result === RESULTS.BLOCKED) {
+          showRequestPermission(EPermission.PHOTO);
+        }
+        return result === RESULTS.GRANTED;
+      case RESULTS.UNAVAILABLE:
+        showPermissionUnavailable(EPermission.PHOTO);
+        return false;
+      default:
+        return true;
     }
-    if (checkPermission === RESULTS.DENIED) {
-      const result = await request(
-        isIOSPlatform
-          ? PERMISSIONS.IOS.PHOTO_LIBRARY
-          : PERMISSIONS.ANDROID.READ_EXTERNAL_STORAGE,
-      );
-      return result === RESULTS.GRANTED;
-    }
-    if (checkPermission === RESULTS.UNAVAILABLE) {
-      showPermissionUnavailable('photo');
-      return false;
-    }
-    return true;
   } catch (err) {
     console.log(err);
     return false;
@@ -92,7 +82,7 @@ export const checkAudio = async () => {
         : PERMISSIONS.ANDROID.RECORD_AUDIO,
     );
     if (checkPermission === RESULTS.BLOCKED) {
-      showRequestPermission('audio');
+      showRequestPermission(EPermission.AUDIO);
       return false;
     }
     if (checkPermission === RESULTS.DENIED) {
@@ -104,7 +94,7 @@ export const checkAudio = async () => {
       return result === RESULTS.GRANTED;
     }
     if (checkPermission === RESULTS.UNAVAILABLE) {
-      showPermissionUnavailable('audio');
+      showPermissionUnavailable(EPermission.AUDIO);
       return false;
     }
     return true;
@@ -122,7 +112,7 @@ export const checkLocation = async () => {
         : PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION,
     );
     if (checkPermission === RESULTS.BLOCKED) {
-      showRequestPermission('location');
+      showRequestPermission(EPermission.LOCATION);
       return false;
     }
     if (checkPermission === RESULTS.DENIED) {
@@ -131,10 +121,13 @@ export const checkLocation = async () => {
           ? PERMISSIONS.IOS.LOCATION_WHEN_IN_USE
           : PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION,
       );
+      if (result === RESULTS.BLOCKED) {
+        showRequestPermission(EPermission.LOCATION);
+      }
       return result === RESULTS.GRANTED;
     }
     if (checkPermission === RESULTS.UNAVAILABLE) {
-      showPermissionUnavailable('location');
+      showPermissionUnavailable(EPermission.LOCATION);
       return false;
     }
     return true;
@@ -143,24 +136,30 @@ export const checkLocation = async () => {
   }
 };
 
-const messages: any = {
-  camera: i18next.t('permissions.camera'),
-  photo: i18next.t('permissions.photo'),
-  audio: i18next.t('permissions.audio'),
-};
+const showRequestPermission = (type: EPermission) => {
+  const messages: any = {
+    camera: i18next.t('permissions.camera', {appName: Config.APP_NAME}),
+    photo: i18next.t('permissions.photo', {appName: Config.APP_NAME}),
+    audio: i18next.t('permissions.audio', {appName: Config.APP_NAME}),
+    location: i18next.t('permissions.location', {appName: Config.APP_NAME}),
+  };
 
-const showRequestPermission = (type: string) => {
   Alert.alert(
-    Config.APP_NAME,
-    messages[type],
+    `${i18next.t('permissions.requestAccess', {
+      appName: Config.APP_NAME,
+      permissionType: type,
+    })}`,
+    `${i18next.t('permissions.requestMessage', {
+      appName: Config.APP_NAME,
+      permissionType: type,
+    })}`,
     [
       {
-        text: i18next.t('common.cancel'),
-        onPress: () => console.log('Cancel Pressed'),
+        text: `${i18next.t('common.cancel')}`,
         style: 'default',
       },
       {
-        text: i18next.t('common.confirm'),
+        text: `${i18next.t('common.goToSetting')}`,
         onPress: () =>
           openSettings().catch(() => console.log('cannot open settings', true)),
       },
@@ -169,13 +168,9 @@ const showRequestPermission = (type: string) => {
   );
 };
 
-const messagesUnavailable: any = {
-  camera: i18next.t('permissions.camera.title'),
-  photo: i18next.t('permissions.photo.title'),
-  audio: i18next.t('permissions.audio.title'),
-  location: i18next.t('permissions.location.title'),
-};
-
-const showPermissionUnavailable = (type: string) => {
-  Alert.alert(Config.APP_NAME, messagesUnavailable[type]);
+const showPermissionUnavailable = (type: EPermission) => {
+  Alert.alert(
+    String(Config.APP_NAME),
+    `${i18next.t('permissions.unavailable', {permissionType: type})}`,
+  );
 };

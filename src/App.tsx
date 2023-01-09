@@ -10,6 +10,8 @@ import {store} from 'src/store';
 import {config} from 'app-config';
 import RootStack from './navigation/scenes/RootStack';
 import FlashMessage from 'react-native-flash-message';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
+import './util/i18n';
 
 interface AppProps {}
 let persistor = persistStore(store);
@@ -18,16 +20,18 @@ const App = ({}: AppProps) => {
   return (
     <Provider store={store}>
       <PersistGate loading={<ActivityIndicator />} persistor={persistor}>
-        <NativeBaseProvider>
-          <NavigationContainer ref={navigationRef}>
-            <StatusBar
-              backgroundColor={config.color.primary}
-              barStyle="default"
-            />
-            <RootStack />
-            <FlashMessage position="top" />
-          </NavigationContainer>
-        </NativeBaseProvider>
+        <SafeAreaProvider>
+          <NativeBaseProvider>
+            <NavigationContainer ref={navigationRef}>
+              <StatusBar
+                backgroundColor={config.color.primary}
+                barStyle="default"
+              />
+              <RootStack />
+              <FlashMessage position="top" />
+            </NavigationContainer>
+          </NativeBaseProvider>
+        </SafeAreaProvider>
       </PersistGate>
     </Provider>
   );

@@ -1,10 +1,10 @@
 import {config} from 'app-config';
 import React, {useState} from 'react';
-import {CustomNavBar, ScreenContainer} from 'src/components';
+import {CustomNavBar} from 'src/components';
 import News from './News';
 import Popular from './Popular';
 import {TabView, TabBar} from 'react-native-tab-view';
-import {Text} from 'react-native';
+import {SafeAreaView, Text} from 'react-native';
 
 const marginIndicator = (config.layout.windowWidth / 2 - 40) / 2;
 
@@ -26,12 +26,14 @@ function Home(props) {
   };
 
   return (
-    <ScreenContainer>
+    <SafeAreaView style={{flex: 1, backgroundColor: config.color.white}}>
       <CustomNavBar {...props} />
       <TabView
         renderTabBar={props => (
           <TabBar
             {...props}
+            // tabStyle={{width: 'auto', paddingHorizontal: 20}}
+            // scrollEnabled
             indicatorContainerStyle={{marginHorizontal: marginIndicator}}
             indicatorStyle={{
               backgroundColor: config.color.primary,
@@ -46,6 +48,7 @@ function Home(props) {
                   color: focused
                     ? config.color.primary
                     : config.color.placeholder,
+                  fontWeight: focused ? '500' : null,
                 }}>
                 {route.title}
               </Text>
@@ -60,7 +63,7 @@ function Home(props) {
         }}
         initialLayout={{width: config.layout.windowWidth}}
       />
-    </ScreenContainer>
+    </SafeAreaView>
   );
 }
 

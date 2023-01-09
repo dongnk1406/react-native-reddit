@@ -17,7 +17,7 @@
     /* Base directory to resolve non-absolute module names. */
     "paths": {
       "app-data": ["./src/data"],
-      "app-util": ["./src/util"],
+      "app-util": ["./src/utils"],
       "app-config": ["./src/config.js"],
       "src/*": ["./src/*"],
       "app-type": ["./src/type"],

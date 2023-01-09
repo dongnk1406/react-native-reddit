@@ -29,7 +29,7 @@ module.exports = {
         ],
         alias: {
           'app-data': './src/data',
-          'app-util': './src/util',
+          'app-util': './src/utils',
           'app-config': './src/config',
           'src': './src',
           'app-type': './src/type',

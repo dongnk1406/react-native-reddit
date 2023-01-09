@@ -3,7 +3,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {publicRoutes} from '../config/routes';
 const Stack = createNativeStackNavigator();
 
-function AuthStack(props) {
+function AuthStack() {
   return (
     <Stack.Navigator>
       {publicRoutes.map((route, index) => {

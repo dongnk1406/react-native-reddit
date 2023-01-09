@@ -1,0 +1,22 @@
+{
+    "home": "Home",
+    "detail": "Detail",
+    "go_to_detail": "go to detail",
+    "back": "back",
+    "setting": "Setting",
+    "another": "This is content any",
+    "common": {
+        "cancel": "Cancel",
+        "confirm": "Confirm",
+        "goToSetting": "Go to setting"
+    },
+    "permissions": {
+        "camera": "Allow {{appName}} to access your camera",
+        "photo": "Allow {{appName}} to access your photo",
+        "audio": "Allow {{appName}} to access your audio",
+        "location": "Allow {{appName}} to access your location",
+        "requestAccess": "{{appName}} would like to access your {{permissionType}}",
+        "requestMessage": "Allow {{appName}} to access your {{permissionType}}",
+        "unavailable": "Can't connect to {{permissionType}}"
+    }
+}

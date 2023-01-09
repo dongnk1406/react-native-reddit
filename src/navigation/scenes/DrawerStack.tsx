@@ -15,7 +15,7 @@ import TabNavigator from './TabNavigator';
 
 const Drawer = createDrawerNavigator();
 
-function DrawerStack({navigation}) {
+function DrawerStack() {
   return (
     <Drawer.Navigator
       drawerContent={props => <CustomDrawer {...props} />}

@@ -25,7 +25,7 @@ const Wordle = props => {
       setPosition(prev => prev + 1);
       setBoard(newBoard);
     },
-    [position, row],
+    [board, row],
   );
 
   const handleValidWordInputInWordList = useCallback(
@@ -73,7 +73,7 @@ const Wordle = props => {
       setWordInput(wordInput5Char);
       setRow(prev => prev + 1);
     },
-    [position, row],
+    [board, correctWord, row],
   );
 
   const handleDeleteCharInput = useCallback(
@@ -86,7 +86,7 @@ const Wordle = props => {
       setPosition(prev => prev - 1);
       setBoard(newBoard);
     },
-    [position, row],
+    [board, row],
   );
 
   const handleSetSelectedKey = useCallback(
@@ -102,7 +102,12 @@ const Wordle = props => {
           handleAddCharInput(position, value);
       }
     },
-    [position, row],
+    [
+      handleAddCharInput,
+      handleDeleteCharInput,
+      handleValidWordInputInWordList,
+      position,
+    ],
   );
 
   return (

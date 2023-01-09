@@ -71,12 +71,14 @@ const PostScreen = ({}: PostProps) => {
   const handleDeleteJob = useCallback(
     async (id: string, index: number) => {
       try {
-        await request.delete(`/todo-list/${id}`);
-        setData(prev => {
-          const newPrev = [...prev];
-          newPrev.splice(index, 1);
-          return newPrev;
-        });
+        const response = await request.delete(`/todo-list/${id}`);
+        if (response.status === 200) {
+          setData(prev => {
+            const newPrev = [...prev];
+            newPrev.splice(index, 1);
+            return newPrev;
+          });
+        }
       } catch (error) {
         console.log(error);
       }

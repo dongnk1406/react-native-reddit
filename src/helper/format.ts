@@ -42,3 +42,16 @@ export const hexToRgbCode = (hex: string) => {
 export const hexToRgba = (hex: string, opacity: number) => {
   return 'rgba(' + hexToRgbCode(hex).join(',') + ',' + opacity + ')';
 };
+
+export const stringOverShowDot = (string: string, lengthSplit = 20): string => {
+  return string.length > lengthSplit
+    ? string.slice(0, lengthSplit) + '...'
+    : string;
+};
+
+export const snakeToCamel = (str: string) =>
+  str
+    .toLowerCase()
+    .replace(/([-_][a-z])/g, group =>
+      group.toUpperCase().replace('-', '').replace('_', ''),
+    );
