@@ -1,7 +1,6 @@
 // import
 import OnBoarding from './OnBoarding';
 import Login from './Login';
-import HomePage from './HomePage';
 import Profile from './Profile';
 import GameDetail from './GameDetail';
 import AuthConfirm from './AuthConfirm';
@@ -10,13 +9,12 @@ import Launch from './Launch';
 import BookMark from './BookMark';
 import Setting from './Setting';
 import PomoFocus from './PomoFocus';
-
+import WebView from './WebView';
 // export
 
 export {
   OnBoarding,
   Login,
-  HomePage,
   Profile,
   GameDetail,
   AuthConfirm,
@@ -24,5 +22,6 @@ export {
   Launch,
   BookMark,
   Setting,
-  PomoFocus
+  PomoFocus,
+  WebView,
 };
