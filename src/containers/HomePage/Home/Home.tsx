@@ -5,6 +5,7 @@ import News from './News';
 import Popular from './Popular';
 import {TabView, TabBar} from 'react-native-tab-view';
 import {Text} from 'react-native';
+import {View} from 'native-base';
 
 const marginIndicator = (config.layout.windowWidth / 2 - 40) / 2;
 
@@ -26,7 +27,7 @@ function Home(props) {
   };
 
   return (
-    <ScreenContainer>
+    <>
       <CustomNavBar {...props} />
       <TabView
         renderTabBar={props => (
@@ -60,7 +61,7 @@ function Home(props) {
         }}
         initialLayout={{width: config.layout.windowWidth}}
       />
-    </ScreenContainer>
+    </>
   );
 }
 

@@ -6,6 +6,7 @@ import {
   AuthConfirm,
   Training,
   BookMark,
+  WebView,
 } from '../../containers';
 import {ListFriend} from 'src/containers/Profile';
 import {TrainingItem} from 'src/containers/Training';
@@ -13,6 +14,7 @@ import DrawerStack from '../scenes/DrawerStack';
 import {navigationStrings, navBarTitle} from './constants';
 import {config} from 'app-config';
 import TabNavigator from '../scenes/TabNavigator';
+import {stringOverShowDot} from 'src/helper';
 
 const showOnlyBackButton = {
   title: '',
@@ -66,7 +68,9 @@ const privateRoutes = [
     name: navigationStrings.HOME_PAGE,
     component: TabNavigator,
     options: ({route}) => ({
-      title: route.params?.headerTitle || navBarTitle.HOME_PAGE,
+      title: stringOverShowDot(
+        route.params?.headerTitle || navBarTitle.HOME_PAGE,
+      ),
       headerShown: false,
     }),
   },
@@ -74,7 +78,9 @@ const privateRoutes = [
     name: navigationStrings.PROFILE,
     component: Profile,
     options: ({route}) => ({
-      title: route.params?.headerTitle || navBarTitle.PROFILE,
+      title: stringOverShowDot(
+        route.params?.headerTitle || navBarTitle.PROFILE,
+      ),
     }),
   },
   {
@@ -112,6 +118,14 @@ const privateRoutes = [
     component: BookMark,
     options: ({route}) => ({
       title: route.params?.headerTitle || navBarTitle.BOOK_MARK,
+      ...lightHeaderStyle,
+    }),
+  },
+  {
+    name: navigationStrings.WebView,
+    component: WebView,
+    options: ({route}) => ({
+      title: route.params?.headerTitle || navBarTitle.WebView,
       ...lightHeaderStyle,
     }),
   },

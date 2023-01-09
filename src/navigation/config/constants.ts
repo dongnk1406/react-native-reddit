@@ -21,6 +21,7 @@ const navigationStrings = {
   POLICY: 'Policy',
   BOOK_MARK: 'BookMark',
   POMO_FOCUS: 'Pomofoucs',
+  WebView: 'WebView',
 };
 
 const navBarTitle = {
@@ -47,6 +48,7 @@ const navBarTitle = {
   POLICY: 'Policy',
   BOOK_MARK: 'Book mark',
   POMO_FOCUS: 'Pomo foucs',
+  WebView: 'WebView',
 };
 
 export {navigationStrings, navBarTitle};

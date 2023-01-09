@@ -79,7 +79,7 @@ function TabStacks() {
       options: ({route}) => ({
         ...lightHeaderStyle,
         tabBarIcon: ({color}) => {
-          return <IconFontAwesome name="bell" size={20} color={color} />;
+          return <IconFontAwesome name="bell" size={18} color={color} />;
         },
       }),
     },

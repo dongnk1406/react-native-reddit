@@ -16,5 +16,6 @@ export interface BaseButtonProps
   success?: boolean;
   warning?: boolean;
   danger?: boolean;
-  color: string;
+  color?: string;
+  throttleTime?: number;
 }

@@ -1,18 +1,28 @@
 import {config} from 'app-config';
 import React from 'react';
-import {SafeAreaView, StatusBar} from 'react-native';
+import {StatusBar, ColorValue} from 'react-native';
+import {SafeAreaView} from 'react-native-safe-area-context';
+import {TStyle} from 'src/type';
 
 interface ScreenContainerProps {
   children: React.ReactNode;
-  backgroundColor?: string | null;
+  backgroundColor?: ColorValue | null;
+  overrideStyle?: TStyle;
 }
 
-const ScreenContainer = ({children, backgroundColor}: ScreenContainerProps) => {
+const ScreenContainer = ({
+  children,
+  backgroundColor,
+  overrideStyle,
+  ...props
+}: ScreenContainerProps) => {
   return (
     <SafeAreaView
+      {...props}
       style={{
         backgroundColor: backgroundColor || config.color.white,
-        height: '100%',
+        flex: 1,
+        ...overrideStyle,
       }}>
       <StatusBar barStyle="dark-content" />
       {children}

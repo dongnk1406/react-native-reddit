@@ -10,22 +10,13 @@ import {
   request,
 } from 'react-native-permissions';
 
-export const checkCamera = async (modal: any) => {
+export const checkCamera = async (alert?: any) => {
   try {
     const checkPermission = await check(
       isIOSPlatform ? PERMISSIONS.IOS.CAMERA : PERMISSIONS.ANDROID.CAMERA,
     );
     if (checkPermission === RESULTS.BLOCKED) {
-      ModalConfirm({
-        modal,
-        title: 'permissions.camera.title',
-        content: 'permissions.camera.content',
-        textConfirm: 'common.settings',
-        textCancel: 'common.no',
-        onConfirm: () => {
-          openSettings().catch(() => console.log('cannot open settings'));
-        },
-      });
+      alert();
       return false;
     }
     if (checkPermission === RESULTS.DENIED) {
@@ -45,39 +36,31 @@ export const checkCamera = async (modal: any) => {
   }
 };
 
-export const checkPhoto = async (modal: any) => {
+export const checkPhoto = async (alert?: any) => {
   try {
     const checkPermission = await check(
       isIOSPlatform
         ? PERMISSIONS.IOS.PHOTO_LIBRARY
         : PERMISSIONS.ANDROID.READ_EXTERNAL_STORAGE,
     );
-    if (checkPermission === RESULTS.BLOCKED) {
-      ModalConfirm({
-        modal,
-        title: 'permissions.photo.title',
-        content: 'permissions.photo.content',
-        textConfirm: 'common.settings',
-        textCancel: 'common.no',
-        onConfirm: () => {
-          openSettings().catch(() => console.log('cannot open settings'));
-        },
-      });
-      return false;
+    switch (checkPermission) {
+      case RESULTS.BLOCKED:
+        alert();
+        return false;
+      case RESULTS.DENIED:
+        const result = await request(
+          isIOSPlatform
+            ? PERMISSIONS.IOS.PHOTO_LIBRARY
+            : PERMISSIONS.ANDROID.READ_EXTERNAL_STORAGE,
+        );
+        if (result === RESULTS.BLOCKED) alert();
+        return result === RESULTS.GRANTED;
+      case RESULTS.UNAVAILABLE:
+        showPermissionUnavailable('photo');
+        return false;
+      default:
+        return true;
     }
-    if (checkPermission === RESULTS.DENIED) {
-      const result = await request(
-        isIOSPlatform
-          ? PERMISSIONS.IOS.PHOTO_LIBRARY
-          : PERMISSIONS.ANDROID.READ_EXTERNAL_STORAGE,
-      );
-      return result === RESULTS.GRANTED;
-    }
-    if (checkPermission === RESULTS.UNAVAILABLE) {
-      showPermissionUnavailable('photo');
-      return false;
-    }
-    return true;
   } catch (err) {
     console.log(err);
     return false;
@@ -151,7 +134,7 @@ const messages: any = {
 
 const showRequestPermission = (type: string) => {
   Alert.alert(
-    Config.APP_NAME,
+    String(Config.APP_NAME),
     messages[type],
     [
       {
@@ -177,5 +160,5 @@ const messagesUnavailable: any = {
 };
 
 const showPermissionUnavailable = (type: string) => {
-  Alert.alert(Config.APP_NAME, messagesUnavailable[type]);
+  Alert.alert(String(Config.APP_NAME), messagesUnavailable[type]);
 };

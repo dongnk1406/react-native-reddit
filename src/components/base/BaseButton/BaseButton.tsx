@@ -3,6 +3,9 @@ import {Text, TouchableOpacity, View} from 'react-native';
 import {config} from 'app-config';
 import {hexToRgba} from 'src/helper';
 import {BaseButtonProps} from '.';
+import {throttle} from 'lodash';
+
+const configThrottle = {trailing: false};
 
 const BaseButton = ({
   label,
@@ -13,8 +16,10 @@ const BaseButton = ({
   disable,
   color,
   onPress,
+  throttleTime = 500,
 }: BaseButtonProps) => {
   const [isPressed, setPressed] = useState<boolean>(false);
+  const handlePress = throttle(onPress, throttleTime, configThrottle);
 
   return (
     <View
@@ -26,7 +31,7 @@ const BaseButton = ({
         activeOpacity={1}
         onPressIn={() => setPressed(true)}
         onPressOut={() => setPressed(false)}
-        onPress={onPress}
+        onPress={handlePress}
         style={[
           {
             height: 50,
