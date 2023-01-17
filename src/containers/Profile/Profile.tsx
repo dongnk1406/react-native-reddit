@@ -66,10 +66,34 @@ const ProfileScreen = () => {
           <Text>Require location</Text>
         </StyledTouchable>
         <StyledTouchable
+          style={{
+            backgroundColor: 'red',
+            marginVertical: 10,
+            padding: 10,
+            borderRadius: 10,
+          }}
           onPress={() => {
-            i18n.changeLanguage('vn');
+            i18n
+              .changeLanguage('en')
+              .then(() => console.log('en'))
+              .catch(err => console.log(err));
           }}>
-          <Text>Change language</Text>
+          <Text>Change language EN</Text>
+        </StyledTouchable>
+        <StyledTouchable
+          style={{
+            backgroundColor: 'red',
+            marginVertical: 10,
+            padding: 10,
+            borderRadius: 10,
+          }}
+          onPress={() => {
+            i18n
+              .changeLanguage('vn')
+              .then(() => console.log('vn'))
+              .catch(err => console.log(err));
+          }}>
+          <Text>Change language VN</Text>
         </StyledTouchable>
         <Text>{t('another')}</Text>
       </View>

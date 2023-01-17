@@ -1,15 +1,18 @@
 import {config} from 'app-config';
-import React, {useState} from 'react';
+import React, {useRef, useState} from 'react';
 import {CustomNavBar} from 'src/components';
 import News from './News';
 import Popular from './Popular';
 import {TabView, TabBar} from 'react-native-tab-view';
 import {SafeAreaView, Text} from 'react-native';
+import {useScrollToTop} from '@react-navigation/native';
 
 const marginIndicator = (config.layout.windowWidth / 2 - 40) / 2;
 
 function Home(props) {
   const [index, setIndex] = useState<number>(0);
+  const scrollRef = useRef(null);
+  useScrollToTop(scrollRef);
 
   const [routes] = useState([
     {key: 'News', title: 'News'},
@@ -19,7 +22,7 @@ function Home(props) {
   const renderScene = ({route}) => {
     switch (route.key) {
       case 'News':
-        return <News currentIndex={index} />;
+        return <News currentIndex={index} ref={scrollRef} />;
       case 'Popular':
         return <Popular currentIndex={index} />;
     }

@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {forwardRef, useCallback, useEffect, useState} from 'react';
 import {
   View,
   Text,
@@ -10,23 +10,16 @@ import {
   Alert,
   Button,
 } from 'react-native';
-import {useAppSelector, useFetch, useGeolocation} from 'src/hooks';
+import {useAppSelector, useFetch} from 'src/hooks';
 import {config} from 'app-config';
-import {NewsProps, Post} from '.';
+import {Post} from '.';
 import {navigationStrings} from 'src/navigation';
 import FastImage from 'react-native-fast-image';
 import Share from 'react-native-share';
 import Modal from 'react-native-modal';
 import DeviceInfo from 'react-native-device-info';
-import Geolocation from '@react-native-community/geolocation';
 import {useFocusEffect, useNavigation} from '@react-navigation/native';
-import AsyncStorageManager from 'src/helper/AsyncStorageManager';
-import {useTheme} from 'src/theme';
-import {showMessage} from 'react-native-flash-message';
-import {
-  checkNotifications,
-  requestNotifications,
-} from 'react-native-permissions';
+
 import {getFCMToken, notificationHandler} from 'src/helper/pushNotification';
 
 const url = `https://62ff2c7134344b6431f3db0c.mockapi.io/api/v1/list-friend`;
@@ -54,7 +47,7 @@ const OpenURLButton = ({url, children}: {url: string; children?: any}) => {
 
 const IMAGE_SIZE = (config.layout.windowWidth - 20) / 3;
 
-export default function NewsScreen() {
+function NewsScreen(props, ref: React.LegacyRef<ScrollView> | undefined) {
   const {data, error} = useFetch<Post[]>(url);
   const [refreshing, setRefreshing] = useState<boolean>(false);
   const [isModalVisible, setModalVisible] = useState(false);
@@ -120,6 +113,7 @@ export default function NewsScreen() {
 
   return (
     <ScrollView
+      ref={ref}
       contentContainerStyle={{
         backgroundColor: theme === 'light' ? 'white' : '#605c5c',
       }}
@@ -219,3 +213,5 @@ export default function NewsScreen() {
     </ScrollView>
   );
 }
+
+export default forwardRef(NewsScreen);

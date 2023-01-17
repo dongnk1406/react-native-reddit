@@ -5,14 +5,50 @@ import {
   SafeAreaView,
   ScrollView,
   TouchableOpacity,
+  Button,
 } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
 import {freeGames, paidGames, sliderData} from 'app-data';
 import {CustomSwitch, ListGame, BannerSlider} from 'src/components';
 import {config} from 'app-config';
 import {navigationStrings} from 'src/navigation';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {useNavigation} from '@react-navigation/native';
+const Stack = createNativeStackNavigator();
 
-const ExploreScreen = ({navigation}) => {
+const ExploreScreen = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="Home"
+        component={HomeScreen}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="Game"
+        component={Game}
+        options={() => ({
+          title: 'Hello',
+        })}
+      />
+    </Stack.Navigator>
+  );
+};
+
+const Game = () => {
+  const navigation = useNavigation();
+  return (
+    <View>
+      <Text>Hello </Text>
+      <Button
+        title="Go to Details... again"
+        onPress={() => navigation.push('Game')}
+      />
+    </View>
+  );
+};
+
+const HomeScreen = ({navigation}) => {
   const [gamesTab, setGamesTab] = useState(1);
 
   const renderBanner = ({item}) => {
@@ -33,8 +69,7 @@ const ExploreScreen = ({navigation}) => {
             justifyContent: 'space-between',
           }}>
           <Text style={{fontSize: 18}}>Upcoming Games</Text>
-          <TouchableOpacity
-            activeOpacity={config.layout.activeOpacity}>
+          <TouchableOpacity activeOpacity={config.layout.activeOpacity}>
             <Text style={{color: config.color.primary}}>See all</Text>
           </TouchableOpacity>
         </View>
@@ -63,9 +98,9 @@ const ExploreScreen = ({navigation}) => {
               subTitle={item.subtitle}
               isFree={item.isFree}
               onPress={() =>
-                navigation.navigate(navigationStrings.GAME_DETAIL, {
-                  headerTitle: item.title,
-                  id: item.id,
+                navigation.navigate('Game', {
+                  // headerTitle: item.title,
+                  // id: item.id,
                 })
               }
             />
@@ -80,9 +115,9 @@ const ExploreScreen = ({navigation}) => {
               isFree={item.isFree}
               price={item.price}
               onPress={() =>
-                navigation.navigate(navigationStrings.GAME_DETAIL, {
-                  headerTitle: item.title,
-                  id: item.id,
+                navigation.navigate('Game', {
+                  // headerTitle: item.title,
+                  // id: item.id,
                 })
               }
             />

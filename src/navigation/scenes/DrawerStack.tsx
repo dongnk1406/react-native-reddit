@@ -1,12 +1,6 @@
 import React from 'react';
 import {createDrawerNavigator} from '@react-navigation/drawer';
-import {
-  BookMark,
-  Training,
-  Profile,
-  Setting,
-  PomoFocus,
-} from '../../containers';
+import {BookMark, Training, Profile, Setting, PomoFocus} from 'src/containers';
 import {config} from 'app-config';
 import {navBarTitle, navigationStrings} from '../config/constants';
 import {ListFriend} from 'src/containers/Profile';

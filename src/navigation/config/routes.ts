@@ -7,7 +7,7 @@ import {
   Training,
   BookMark,
   WebView,
-} from '../../containers';
+} from 'src/containers';
 import {ListFriend} from 'src/containers/Profile';
 import {TrainingItem} from 'src/containers/Training';
 import DrawerStack from '../scenes/DrawerStack';

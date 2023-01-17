@@ -1,5 +1,5 @@
 const resources = {
-  vi: {
+  vn: {
     translation: require('./vn.json'),
   },
   en: {
