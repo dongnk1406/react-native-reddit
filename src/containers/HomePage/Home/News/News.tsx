@@ -58,7 +58,6 @@ function NewsScreen(props, ref: React.LegacyRef<ScrollView> | undefined) {
 
   useFocusEffect(
     useCallback(() => {
-      console.log('token', token);
       notificationHandler();
     }, []),
   );

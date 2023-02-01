@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "@gorhom/bottom-sheet": "^4",
+    "@hookform/resolvers": "^2.9.10",
     "@react-native-async-storage/async-storage": "^1.17.9",
     "@react-native-community/clipboard": "^1.5.1",
     "@react-native-community/geolocation": "^3.0.4",
@@ -49,6 +50,7 @@
     "react": "17.0.2",
     "react-devtools-core": "^4.26.1",
     "react-fast-compare": "^3.2.0",
+    "react-hook-form": "^7.42.1",
     "react-i18next": "^12.1.1",
     "react-native": "0.67.4",
     "react-native-base64": "^0.2.1",
@@ -87,7 +89,8 @@
     "redux-persist": "^6.0.0",
     "redux-saga": "^1.2.1",
     "rn-fetch-blob": "^0.12.0",
-    "uuid": "^9.0.0"
+    "uuid": "^9.0.0",
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
