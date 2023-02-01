@@ -29,10 +29,11 @@ import {ScrollView} from 'react-native-gesture-handler';
 const ProfileScreen = () => {
   const bottomSheetModalRef = useRef<BottomSheetModal>(null);
   const modalRef = useRef<Modal>(null);
-  const countRef = useRef(0);
-  const prevCountRef = useRef(0);
   const {bottom} = useSafeAreaInsets();
   const {t} = useTranslation();
+  const countRef = useRef(0);
+  const prevCountRef = useRef(0);
+  const offsetScroll = useRef(0);
 
   const [number, setNumber] = useState<number>(0);
   const [firstBoxPosition, setFirstBoxPosition] = useState('left');
@@ -120,7 +121,14 @@ const ProfileScreen = () => {
   // renders
   return (
     <SafeAreaView style={{backgroundColor: config.color.white}}>
-      <ScrollView showsVerticalScrollIndicator={false}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        onScroll={e => {
+          const currentOffset = e.nativeEvent.contentOffset.y;
+          const direction =
+            currentOffset > offsetScroll.current ? 'down' : 'up';
+          offsetScroll.current = currentOffset;
+        }}>
         <View style={styles.container}>
           <StyledTouchable onPress={handlePresentModalPress}>
             <Text>Show bottom sheet modal</Text>

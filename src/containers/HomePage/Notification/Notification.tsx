@@ -42,7 +42,15 @@ const NotificationScreen = ({}: NotificationProps) => {
               />
             }
             labels={() => `RM ${String(Math.round(20))}`}
-            labelComponent={<VictoryTooltip active={activeBar} />}
+            labelComponent={
+              <VictoryTooltip
+                active={activeBar}
+                pointerWidth={0}
+                pointerLength={10}
+                flyoutPadding={{top: 4, bottom: 4, left: 10, right: 10}}
+                flyoutStyle={{backgroundColor: 'red'}}
+              />
+            }
           />
           <VictoryAxis
             dependentAxis
