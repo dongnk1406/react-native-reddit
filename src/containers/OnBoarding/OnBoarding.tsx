@@ -10,13 +10,13 @@ import {
   SafeAreaView,
   StatusBar,
 } from 'react-native';
-import {navigationStrings} from 'src/navigation';
+import {navigationRoutes} from 'src/navigation';
 import {config} from 'app-config';
 const width = Dimensions.get('window').width;
 import {onBoardingSlide} from 'app-data';
 import Description from './Description';
 import {BaseButton} from 'src/components';
-import { OnBoardingProps } from '.';
+import {OnBoardingProps} from '.';
 
 const OnBoardingScreen = ({navigation}: OnBoardingProps) => {
   const [animatedScrollXValue] = useState(new Animated.Value(0));
@@ -32,7 +32,7 @@ const OnBoardingScreen = ({navigation}: OnBoardingProps) => {
     }).start();
   }, []);
 
-  const renderItem = useCallback(({item} : any) => {
+  const renderItem = useCallback(({item}: any) => {
     return (
       <View style={styles.slideWrapper}>
         <Image source={{uri: item.url}} style={styles.image} />
@@ -82,7 +82,7 @@ const OnBoardingScreen = ({navigation}: OnBoardingProps) => {
     return onBoardingSlide.length < 2 ? (
       <BaseButton
         label="Start"
-        onPress={() => navigation.replace(navigationStrings.LOGIN)}
+        onPress={() => navigation.replace(navigationRoutes.LOGIN)}
       />
     ) : (
       <View style={styles.buttonContent}>
@@ -90,7 +90,7 @@ const OnBoardingScreen = ({navigation}: OnBoardingProps) => {
         <TouchableOpacity
           activeOpacity={config.layout.activeOpacity}
           style={styles.buttonBackground}
-          onPress={() => navigation.replace(navigationStrings.LOGIN)}>
+          onPress={() => navigation.replace(navigationRoutes.LOGIN)}>
           <Text style={styles.buttonText}>Start</Text>
         </TouchableOpacity>
       </View>

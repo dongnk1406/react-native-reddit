@@ -17,7 +17,7 @@ import IconOcticons from 'react-native-vector-icons/Octicons';
 import IconFontAwesome from 'react-native-vector-icons/FontAwesome';
 import IconFontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {config, isIphoneX} from 'app-config';
-import {navBarTitle, navigationStrings} from 'src/navigation/config/constants';
+import {navBarTitle, navigationRoutes} from 'src/navigation/config/constants';
 import BaseSwitch from '../BaseSwitch/BaseSwitch';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useAppDispatch} from 'src/hooks';
@@ -50,7 +50,7 @@ const CustomDrawer = (props: CustomDrawerProps) => {
         <TouchableOpacity
           style={styles.userCompactBlock}
           activeOpacity={config.layout.activeOpacity}
-          onPress={() => navigate(navigationStrings.PROFILE)}>
+          onPress={() => navigate(navigationRoutes.PROFILE)}>
           <Image
             source={{
               uri: 'https://i.redd.it/snoovatar/avatars/16f0557d-0d6d-4b6f-8b2b-ad1b305c8c39.png',
@@ -67,7 +67,7 @@ const CustomDrawer = (props: CustomDrawerProps) => {
           <TouchableOpacity
             activeOpacity={config.layout.activeOpacity}
             style={{flexDirection: 'row', paddingRight: 10}}
-            onPress={() => navigate(navigationStrings.LIST_FRIEND)}>
+            onPress={() => navigate(navigationRoutes.LIST_FRIEND)}>
             <Text style={styles.followerAmount}>10</Text>
             <Text style={styles.followerLabel}>Đang theo dõi</Text>
           </TouchableOpacity>
@@ -91,7 +91,7 @@ const CustomDrawer = (props: CustomDrawerProps) => {
             label={navBarTitle.HOME}
             labelStyle={styles.drawerLabel}
             onPress={() => {
-              navigate(navigationStrings.HOME_PAGE);
+              navigate(navigationRoutes.HOME_PAGE);
             }}
           />
 
@@ -103,7 +103,7 @@ const CustomDrawer = (props: CustomDrawerProps) => {
             label={navBarTitle.BOOK_MARK}
             labelStyle={styles.drawerLabel}
             onPress={() => {
-              navigate(navigationStrings.BOOK_MARK);
+              navigate(navigationRoutes.BOOK_MARK);
             }}
           />
 
@@ -115,7 +115,7 @@ const CustomDrawer = (props: CustomDrawerProps) => {
             label={navBarTitle.TRAINING}
             labelStyle={styles.drawerLabel}
             onPress={() => {
-              navigate(navigationStrings.TRAINING);
+              navigate(navigationRoutes.TRAINING);
             }}
           />
 
@@ -127,7 +127,7 @@ const CustomDrawer = (props: CustomDrawerProps) => {
             label={navBarTitle.POMO_FOCUS}
             labelStyle={styles.drawerLabel}
             onPress={() => {
-              navigate(navigationStrings.POMO_FOCUS);
+              navigate(navigationRoutes.POMO_FOCUS);
             }}
           />
         </View>
@@ -154,7 +154,7 @@ const CustomDrawer = (props: CustomDrawerProps) => {
           style={styles.drawerItem}
           labelStyle={styles.drawerLabel}
           onPress={() => {
-            navigate(navigationStrings.SETTING);
+            navigate(navigationRoutes.SETTING);
           }}
         />
         <DrawerItem

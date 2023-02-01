@@ -1,28 +1,27 @@
 import React, {RefObject} from 'react';
 import {CommonActions, StackActions} from '@react-navigation/native';
-import {navigationStrings} from 'src/navigation';
 
 export const navigationRef: RefObject<any> = React.createRef();
 
-export function navigate(name: string, params = {}): void {
-  navigationRef.current.navigate(name, params);
+export function navigate(route: string, params = {}): void {
+  navigationRef.current.navigate(route, params);
 }
 
 export function goBack(): void {
   navigationRef.current.goBack();
 }
 
-export function replace(name: string, params = {}): void {
-  navigationRef.current.dispatch(StackActions.replace(name, params));
+export function replace(route: string, params = {}): void {
+  navigationRef.current.dispatch(StackActions.replace(route, params));
 }
 
-export function reset(routes = [{name: navigationStrings.HOME_PAGE}]): void {
-  navigationRef.current.dispatch({
-    ...CommonActions.reset({
+export function reset(route: string, params = {}): void {
+  navigationRef.current.dispatch(
+    CommonActions.reset({
       index: 1,
-      routes,
+      routes: [{name: route, params}],
     }),
-  });
+  );
 }
 
 export function canGoBack(): boolean {
@@ -31,6 +30,10 @@ export function canGoBack(): boolean {
 
 export function pop(num?: number): void {
   navigationRef.current.dispatch(StackActions.pop(num));
+}
+
+export function popToTop(): void {
+  navigationRef.current.dispatch(StackActions.popToTop());
 }
 
 export function push(name: string, params = {}): void {

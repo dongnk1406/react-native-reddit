@@ -1,4 +1,4 @@
-const navigationStrings = {
+const navigationRoutes = {
   LOGIN: 'Login',
   HOME_PAGE: 'HomePage',
   ON_BOARDING: 'OnBoarding',
@@ -51,4 +51,4 @@ const navBarTitle = {
   WebView: 'WebView',
 };
 
-export {navigationStrings, navBarTitle};
+export {navigationRoutes, navBarTitle};

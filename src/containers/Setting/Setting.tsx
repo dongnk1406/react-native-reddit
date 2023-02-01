@@ -12,7 +12,7 @@ import {useForm, Controller, FormProvider} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
 import {Button} from 'react-native-elements';
 import * as yup from 'yup';
-import {yupValidate} from 'src/util/validation';
+import {yupValidate} from 'src/helper/validation';
 
 const BOTTOM_SHEET_MAX_HEIGHT = config.layout.windowHeight * 0.6;
 const BOTTOM_SHEET_MIN_HEIGHT = config.layout.windowHeight * 0.08;

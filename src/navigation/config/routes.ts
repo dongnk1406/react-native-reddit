@@ -11,7 +11,7 @@ import {
 import {ListFriend} from 'src/containers/Profile';
 import {TrainingItem} from 'src/containers/Training';
 import DrawerStack from '../scenes/DrawerStack';
-import {navigationStrings, navBarTitle} from './constants';
+import {navigationRoutes, navBarTitle} from './constants';
 import {config} from 'app-config';
 import TabNavigator from '../scenes/TabNavigator';
 import {stringOverShowDot} from 'src/helper';
@@ -35,21 +35,21 @@ const lightHeaderStyle = {
 
 const publicRoutes = [
   {
-    name: navigationStrings.ON_BOARDING,
+    name: navigationRoutes.ON_BOARDING,
     component: OnBoarding,
     options: {
       headerShown: false,
     },
   },
   {
-    name: navigationStrings.LOGIN,
+    name: navigationRoutes.LOGIN,
     component: Login,
     options: {
       headerShown: false,
     },
   },
   {
-    name: navigationStrings.AUTH_CONFIRM,
+    name: navigationRoutes.AUTH_CONFIRM,
     component: AuthConfirm,
     options: {...showOnlyBackButton},
   },
@@ -57,7 +57,7 @@ const publicRoutes = [
 
 const privateRoutes = [
   {
-    name: navigationStrings.DRAWER_STACK,
+    name: navigationRoutes.DRAWER_STACK,
     component: DrawerStack,
     options: ({route}) => ({
       title: route.params?.headerTitle || navBarTitle.DRAWER_STACK,
@@ -65,7 +65,7 @@ const privateRoutes = [
     }),
   },
   {
-    name: navigationStrings.HOME_PAGE,
+    name: navigationRoutes.HOME_PAGE,
     component: TabNavigator,
     options: ({route}) => ({
       title: stringOverShowDot(
@@ -75,7 +75,7 @@ const privateRoutes = [
     }),
   },
   {
-    name: navigationStrings.PROFILE,
+    name: navigationRoutes.PROFILE,
     component: Profile,
     options: ({route}) => ({
       title: stringOverShowDot(
@@ -84,7 +84,7 @@ const privateRoutes = [
     }),
   },
   {
-    name: navigationStrings.GAME_DETAIL,
+    name: navigationRoutes.GAME_DETAIL,
     component: GameDetail,
     options: ({route}) => ({
       title: route.params?.headerTitle || navBarTitle.GAME_DETAIL,
@@ -92,21 +92,21 @@ const privateRoutes = [
     }),
   },
   {
-    name: navigationStrings.TRAINING,
+    name: navigationRoutes.TRAINING,
     component: Training,
     options: ({route}) => ({
       title: route.params?.headerTitle || navBarTitle.TRAINING,
     }),
   },
   {
-    name: navigationStrings.LIST_FRIEND,
+    name: navigationRoutes.LIST_FRIEND,
     component: ListFriend,
     options: ({route}) => ({
       title: route.params?.headerTitle || navBarTitle.LIST_FRIEND,
     }),
   },
   {
-    name: navigationStrings.TRAINING_ITEM,
+    name: navigationRoutes.TRAINING_ITEM,
     component: TrainingItem,
     options: ({route}) => ({
       title: route.params?.headerTitle || navBarTitle.TRAINING_ITEM,
@@ -114,7 +114,7 @@ const privateRoutes = [
     }),
   },
   {
-    name: navigationStrings.BOOK_MARK,
+    name: navigationRoutes.BOOK_MARK,
     component: BookMark,
     options: ({route}) => ({
       title: route.params?.headerTitle || navBarTitle.BOOK_MARK,
@@ -122,7 +122,7 @@ const privateRoutes = [
     }),
   },
   {
-    name: navigationStrings.WebView,
+    name: navigationRoutes.WebView,
     component: WebView,
     options: ({route}) => ({
       title: route.params?.headerTitle || navBarTitle.WebView,

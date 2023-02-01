@@ -1,6 +1,6 @@
 import React from 'react';
 import {Text, ScrollView, View, SafeAreaView} from 'react-native';
-import {navigationStrings} from 'src/navigation';
+import {navigationRoutes} from 'src/navigation';
 import {BaseButton} from 'src/components';
 import {
   Wordle,
@@ -47,7 +47,7 @@ function TrainingScreen({navigation}) {
                 key={i}
                 label={trainingsTitle[i] || `Training ${i}`}
                 onPress={() =>
-                  navigation.navigate(navigationStrings.TRAINING_ITEM, {
+                  navigation.navigate(navigationRoutes.TRAINING_ITEM, {
                     children: <TrainingItem />,
                     headerTitle: trainingsTitle[i] || `Training ${i}`,
                   })

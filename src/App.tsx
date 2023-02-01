@@ -5,12 +5,12 @@ import {PersistGate} from 'redux-persist/integration/react';
 import {NavigationContainer} from '@react-navigation/native';
 import {NativeBaseProvider} from 'native-base';
 import {ActivityIndicator, StatusBar} from 'react-native';
-import {navigationRef} from 'src/navigation';
-import {store} from 'src/store';
-import {config} from 'app-config';
-import RootStack from './navigation/scenes/RootStack';
 import FlashMessage from 'react-native-flash-message';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
+import {navigationRef} from 'src/navigation';
+import RootStack from './navigation/scenes/RootStack';
+import {config} from 'app-config';
+import {store} from 'src/store';
 import './util/i18n';
 
 interface AppProps {}
@@ -22,7 +22,9 @@ const App = ({}: AppProps) => {
       <PersistGate loading={<ActivityIndicator />} persistor={persistor}>
         <SafeAreaProvider>
           <NativeBaseProvider>
-            <NavigationContainer ref={navigationRef}>
+            <NavigationContainer
+              ref={navigationRef}
+              fallback={<ActivityIndicator />}>
               <StatusBar
                 backgroundColor={config.color.primary}
                 barStyle="default"

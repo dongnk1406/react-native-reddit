@@ -5,7 +5,7 @@ import IconIonicons from 'react-native-vector-icons/Ionicons';
 import IconAntDesign from 'react-native-vector-icons/AntDesign';
 import IconEntypo from 'react-native-vector-icons/Entypo';
 import IconFontAwesome from 'react-native-vector-icons/FontAwesome';
-import {navigationStrings} from 'src/navigation';
+import {navigationRoutes} from 'src/navigation';
 import {config, isAndroidPlatform} from 'app-config';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
@@ -23,7 +23,7 @@ const lightHeaderStyle = {
 function TabStacks() {
   const Tabs = [
     {
-      name: navigationStrings.HOME,
+      name: navigationRoutes.HOME,
       component: Home,
       options: {
         headerShown: false,
@@ -33,7 +33,7 @@ function TabStacks() {
       },
     },
     {
-      name: navigationStrings.EXPLORE,
+      name: navigationRoutes.EXPLORE,
       component: Explore,
       options: {
         headerShown: false,
@@ -43,7 +43,7 @@ function TabStacks() {
       },
     },
     {
-      name: navigationStrings.POST,
+      name: navigationRoutes.POST,
       component: Post,
       options: {
         ...lightHeaderStyle,
@@ -53,7 +53,7 @@ function TabStacks() {
       },
     },
     {
-      name: navigationStrings.CHAT,
+      name: navigationRoutes.CHAT,
       component: Chat,
       options: {
         ...lightHeaderStyle,
@@ -68,7 +68,7 @@ function TabStacks() {
       },
     },
     {
-      name: navigationStrings.NOTIFICATION,
+      name: navigationRoutes.NOTIFICATION,
       component: Notification,
       options: ({route}) => ({
         ...lightHeaderStyle,
@@ -98,7 +98,7 @@ function TabStacks() {
           fontSize: 10,
         },
       }}
-      initialRouteName={navigationStrings.HOME}>
+      initialRouteName={navigationRoutes.HOME}>
       {Tabs.map((bottomTab, index) => {
         return (
           <BottomTab.Screen

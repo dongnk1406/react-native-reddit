@@ -11,7 +11,7 @@ import {
   Keyboard,
 } from 'react-native';
 import CountryPicker, {CountryCode} from 'react-native-country-picker-modal';
-import {navigationStrings} from 'src/navigation';
+import {navigationRoutes} from 'src/navigation';
 import {config, isAndroidPlatform, isIOSPlatform, isIphoneX} from 'app-config';
 import {LoginProps} from '.';
 
@@ -69,7 +69,7 @@ const LoginScreen = ({navigation}: LoginProps) => {
               activeOpacity={config.layout.activeOpacity}
               onPress={() =>
                 phoneNumber &&
-                navigation.navigate(navigationStrings.AUTH_CONFIRM, {
+                navigation.navigate(navigationRoutes.AUTH_CONFIRM, {
                   phone: phoneNumber,
                 })
               }>

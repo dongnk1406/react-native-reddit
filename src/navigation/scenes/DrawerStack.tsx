@@ -2,7 +2,7 @@ import React from 'react';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import {BookMark, Training, Profile, Setting, PomoFocus} from 'src/containers';
 import {config} from 'app-config';
-import {navBarTitle, navigationStrings} from '../config/constants';
+import {navBarTitle, navigationRoutes} from '../config/constants';
 import {ListFriend} from 'src/containers/Profile';
 import {CustomDrawer} from 'src/components';
 import TabNavigator from './TabNavigator';
@@ -27,14 +27,14 @@ function DrawerStack() {
         headerTitleAlign: 'center',
       }}>
       <Drawer.Screen
-        name={navigationStrings.HOME_PAGE}
+        name={navigationRoutes.HOME_PAGE}
         component={TabNavigator}
         options={{
           headerShown: false,
         }}
       />
       <Drawer.Screen
-        name={navigationStrings.BOOK_MARK}
+        name={navigationRoutes.BOOK_MARK}
         component={BookMark}
         options={{
           headerLeft: () => null,
@@ -42,21 +42,21 @@ function DrawerStack() {
         }}
       />
       <Drawer.Screen
-        name={navigationStrings.TRAINING}
+        name={navigationRoutes.TRAINING}
         component={Training}
         options={{
           headerLeft: () => null,
         }}
       />
       <Drawer.Screen
-        name={navigationStrings.PROFILE}
+        name={navigationRoutes.PROFILE}
         component={Profile}
         options={{
           headerLeft: () => null,
         }}
       />
       <Drawer.Screen
-        name={navigationStrings.LIST_FRIEND}
+        name={navigationRoutes.LIST_FRIEND}
         component={ListFriend}
         options={{
           headerTitle: navBarTitle.LIST_FRIEND,
@@ -64,7 +64,7 @@ function DrawerStack() {
         }}
       />
       <Drawer.Screen
-        name={navigationStrings.SETTING}
+        name={navigationRoutes.SETTING}
         component={Setting}
         options={{
           headerTitle: navBarTitle.SETTING,
@@ -72,7 +72,7 @@ function DrawerStack() {
         }}
       />
       <Drawer.Screen
-        name={navigationStrings.POMO_FOCUS}
+        name={navigationRoutes.POMO_FOCUS}
         component={PomoFocus}
         options={{
           headerShown: false,

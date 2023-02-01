@@ -17,7 +17,7 @@ import {
 import StyledTouchable from 'src/components/base/StyledTouchable';
 import Modal from 'react-native-modal';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import {navigate, navigationStrings} from 'src/navigation';
+import {navigate, navigationRoutes} from 'src/navigation';
 import ImagePicker from 'react-native-image-crop-picker';
 import {checkCamera, checkLocation, checkPhoto} from 'src/helper';
 import {useTranslation} from 'react-i18next';
@@ -140,7 +140,7 @@ const ProfileScreen = () => {
 
           <StyledTouchable
             onPress={() => {
-              navigate(navigationStrings.WebView, {
+              navigate(navigationRoutes.WebView, {
                 uri: 'https://ramdajs.com/docs/',
               });
             }}>

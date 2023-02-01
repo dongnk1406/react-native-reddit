@@ -1,4 +1,4 @@
-import React, {forwardRef, useCallback, useEffect, useState} from 'react';
+import React, {forwardRef, useCallback, useState} from 'react';
 import {
   View,
   Text,
@@ -13,7 +13,7 @@ import {
 import {useAppSelector, useFetch} from 'src/hooks';
 import {config} from 'app-config';
 import {Post} from '.';
-import {navigationStrings} from 'src/navigation';
+import {navigationRoutes} from 'src/navigation';
 import FastImage from 'react-native-fast-image';
 import Share from 'react-native-share';
 import Modal from 'react-native-modal';
@@ -77,22 +77,6 @@ function NewsScreen(props, ref: React.LegacyRef<ScrollView> | undefined) {
     const res = await getFCMToken();
     setToken(res);
   };
-
-  useEffect(() => {
-    Linking.getInitialURL()
-      .then(url => {
-        if (url) {
-          Alert.alert('Hello', url);
-        }
-
-        Linking.addEventListener('url', url => {
-          if (url) {
-            Alert.alert('Hello get', url);
-          }
-        });
-      })
-      .catch(() => {});
-  }, []);
 
   if (error) {
     return (
@@ -193,7 +177,7 @@ function NewsScreen(props, ref: React.LegacyRef<ScrollView> | undefined) {
               key={item.id}
               style={{marginLeft: 5, marginBottom: 5}}
               onPress={() =>
-                navigation.navigate(navigationStrings.GAME_DETAIL, {
+                navigation.navigate(navigationRoutes.GAME_DETAIL, {
                   headerTitle: item.name,
                 })
               }>

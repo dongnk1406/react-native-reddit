@@ -11,7 +11,6 @@ import Carousel from 'react-native-snap-carousel';
 import {freeGames, paidGames, sliderData} from 'app-data';
 import {CustomSwitch, ListGame, BannerSlider} from 'src/components';
 import {config} from 'app-config';
-import {navigationStrings} from 'src/navigation';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {useNavigation} from '@react-navigation/native';
 const Stack = createNativeStackNavigator();

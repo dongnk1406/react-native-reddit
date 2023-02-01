@@ -16,19 +16,16 @@ const NotificationScreen = ({}: NotificationProps) => {
   return (
     <ScrollView>
       <View style={styles.container}>
-        <VictoryChart
-          domain={{x: [0, 5]}}
-          containerComponent={
-            <VictoryContainer disableContainerEvents={true} />
-          }>
+        <VictoryChart domain={{x: [0, 5]}}>
           <VictoryBar
             barWidth={30}
             cornerRadius={{top: 4}}
             data={[
-              {x: 1, y: 2},
+              {x: 1, y: 5},
               {x: 2, y: 4},
-              {x: 3, y: 1},
-              {x: 4, y: 5},
+              {x: 3, y: 3},
+              {x: 4, y: 2},
+              {x: 5, y: 1},
             ]}
             alignment="middle"
             animate={{
@@ -64,6 +61,7 @@ const NotificationScreen = ({}: NotificationProps) => {
             }}
           />
           <VictoryAxis
+            label={'Hello'}
             style={{
               axis: {
                 stroke: '#BDC5D8',
