@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import {Provider} from 'react-redux';
 import {persistStore} from 'redux-persist';
 import {PersistGate} from 'redux-persist/integration/react';
@@ -17,6 +17,8 @@ interface AppProps {}
 let persistor = persistStore(store);
 
 const App = ({}: AppProps) => {
+  const routeNameRef = useRef();
+
   return (
     <Provider store={store}>
       <PersistGate loading={<ActivityIndicator />} persistor={persistor}>
@@ -24,7 +26,20 @@ const App = ({}: AppProps) => {
           <NativeBaseProvider>
             <NavigationContainer
               ref={navigationRef}
-              fallback={<ActivityIndicator />}>
+              fallback={<ActivityIndicator />}
+              onReady={() => {
+                routeNameRef.current =
+                  navigationRef.current.getCurrentRoute().name;
+              }}
+              onStateChange={async () => {
+                const previousRouteName = routeNameRef.current;
+                const currentRouteName =
+                  navigationRef.current.getCurrentRoute().name;
+                if (previousRouteName !== currentRouteName) {
+                  routeNameRef.current = currentRouteName;
+                  // Your implementation of analytics goes here!
+                }
+              }}>
               <StatusBar
                 backgroundColor={config.color.primary}
                 barStyle="default"

@@ -13,7 +13,7 @@ import {
 import {useAppSelector, useFetch} from 'src/hooks';
 import {config} from 'app-config';
 import {Post} from '.';
-import {navigationRoutes} from 'src/navigation';
+import {navigationRoutes, reset} from 'src/navigation';
 import FastImage from 'react-native-fast-image';
 import Share from 'react-native-share';
 import Modal from 'react-native-modal';
@@ -143,7 +143,12 @@ function NewsScreen(props, ref: React.LegacyRef<ScrollView> | undefined) {
           }}
         />
         {!!ipAddress && <Text>{ipAddress}</Text>}
-        <Button title="Show ip" onPress={toggleModal} />
+        <Button
+          title="Reset state Chat screen"
+          onPress={() => {
+            reset(navigationRoutes.CHAT);
+          }}
+        />
         <Modal
           isVisible={isModalVisible}
           coverScreen={true}

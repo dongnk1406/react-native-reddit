@@ -1813,6 +1813,11 @@
   resolved "https://registry.yarnpkg.com/@react-native-community/netinfo/-/netinfo-6.0.0.tgz#2a4d7190b508dd0c2293656c9c1aa068f6f60a71"
   integrity sha512-Z9M8VGcF2IZVOo2x+oUStvpCW/8HjIRi4+iQCu5n+PhC7OqCQX58KYAzdBr///alIfRXiu6oMb+lK+rXQH1FvQ==
 
+"@react-native-firebase/analytics@^16.7.0":
+  version "16.7.0"
+  resolved "https://registry.yarnpkg.com/@react-native-firebase/analytics/-/analytics-16.7.0.tgz#367487b2961f360c0e6bd3c9bbf4697d4e73e66c"
+  integrity sha512-oLnmChS7w/iuGPiHDxVzxJy60pWD+HjhEGLRdENaEMrF2SA+AQtfJtqvZnGGKPecxZIhUID325xZLBuABIkeBQ==
+
 "@react-native-firebase/app@^16.5.0":
   version "16.7.0"
   resolved "https://registry.yarnpkg.com/@react-native-firebase/app/-/app-16.7.0.tgz#cb6bab9dab836de5eb9f7a608b1d067a2b4783b2"
@@ -1826,6 +1831,13 @@
   version "15.7.1"
   resolved "https://registry.yarnpkg.com/@react-native-firebase/auth/-/auth-15.7.1.tgz#6bfc3be0f1bc3503382593a9c9dbd08b4e21e07e"
   integrity sha512-KtxVcoIpZX5aT0rNaHWo733dP8cCZUBNV90FboapyvasQ5qZdMu+xS2yYe8FdimUlMlzGhMmLyXTxghGmVIZjw==
+
+"@react-native-firebase/dynamic-links@^16.7.0":
+  version "16.7.0"
+  resolved "https://registry.yarnpkg.com/@react-native-firebase/dynamic-links/-/dynamic-links-16.7.0.tgz#62e77138068e487291b234ac878c6ddc3be9af30"
+  integrity sha512-j3faWoN89LNQf+1WFzBclPf5fVlmSXkALSy8JxQDpi3c84uMWouuE4Kkbgv/NpLh7kYitOQcxVRjT84XewRijQ==
+  dependencies:
+    "@expo/config-plugins" "^5.0.4"
 
 "@react-native-firebase/messaging@^16.5.0":
   version "16.7.0"
