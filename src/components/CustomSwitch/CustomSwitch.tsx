@@ -1,16 +1,23 @@
 import React, {useState} from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
-import { config } from 'app-config';
+import {config} from 'app-config';
+
+interface Props {
+  selectionMode: number;
+  option1: string;
+  option2: string;
+  onSelectSwitch: (value: any) => void;
+}
 
 export default function CustomSwitch({
   selectionMode,
   option1,
   option2,
   onSelectSwitch,
-}) {
+}: Props) {
   const [getSelectionMode, setSelectionMode] = useState(selectionMode);
 
-  const updateSwitchData = value => {
+  const updateSwitchData = (value: number) => {
     setSelectionMode(value);
     onSelectSwitch(value);
   };

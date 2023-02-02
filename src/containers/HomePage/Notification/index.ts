@@ -1,5 +1,3 @@
-export {default} from './Notification'
+export {default} from './Notification';
 
-export interface NotificationProps {
-    
-}
+export interface NotificationProps {}

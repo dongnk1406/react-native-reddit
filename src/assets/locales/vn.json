@@ -1,0 +1,13 @@
+{
+    "home": "Màn hình chính",
+    "detail": "Màn chi tiết",
+    "go_to_detail": "Đi đến màn hình chi tiết",
+    "back": "Trở lại",
+    "setting": "Cấu hình",
+    "another": "day la content do",
+    "common": {
+        "cancel": "Hủy",
+        "confirm": "Xác nhận",
+        "goToSetting": "Đi tới cài đặt"
+    }
+}

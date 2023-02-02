@@ -71,7 +71,7 @@ const KeyBoard = ({correctWord, wordInput, handleSetSelectedKey}) => {
       });
     });
     setKeyboard(newKeyBoard);
-  }, [wordInput]);
+  }, [correctWord, keyboard, wordInput]);
 
   return (
     <View style={styles.container}>

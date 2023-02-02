@@ -12,12 +12,12 @@ const StyledWebView = (props: WebViewProps) => {
         startInLoadingState={true}
         renderLoading={() => (
           <View style={styles.flex}>
-            <ActivityIndicator size={'large'} color={config.color.primary} />
+            <ActivityIndicator size="small" color={config.color.primary} />
           </View>
         )}
         renderError={error => (
           <View style={styles.flex}>
-            <Text>Error</Text>
+            <Text>Error {error}</Text>
             <Text style={styles.textPullDown}>Pull down to try again</Text>
           </View>
         )}

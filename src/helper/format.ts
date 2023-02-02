@@ -48,3 +48,10 @@ export const stringOverShowDot = (string: string, lengthSplit = 20): string => {
     ? string.slice(0, lengthSplit) + '...'
     : string;
 };
+
+export const snakeToCamel = (str: string) =>
+  str
+    .toLowerCase()
+    .replace(/([-_][a-z])/g, group =>
+      group.toUpperCase().replace('-', '').replace('_', ''),
+    );

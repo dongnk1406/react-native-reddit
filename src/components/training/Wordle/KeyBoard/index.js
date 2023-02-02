@@ -1,1 +1,1 @@
-export {default} from './KeyBoard'
+export {default} from './KeyBoard';

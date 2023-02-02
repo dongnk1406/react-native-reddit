@@ -24,7 +24,7 @@ export const commonSlice = createSlice({
     setTheme: (state, action: PayloadAction<string>) => {
       state.theme = action.payload;
     },
-    setLanguage: (state, action: PayloadAction<string>) => {
+    updateLanguage: (state, action: PayloadAction<string>) => {
       state.language = action.payload;
     },
   },
@@ -35,4 +35,4 @@ export const commonReducer = persistReducer(
   commonSlice.reducer,
 );
 
-export const {setLoading, setTheme, setLanguage} = commonSlice.actions;
+export const {setLoading, setTheme, updateLanguage} = commonSlice.actions;

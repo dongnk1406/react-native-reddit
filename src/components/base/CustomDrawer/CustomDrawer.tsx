@@ -10,20 +10,22 @@ import {
 import {
   DrawerContentScrollView,
   DrawerItem,
-  DrawerItemList,
+  // DrawerItemList,
 } from '@react-navigation/drawer';
 import IconAntDesign from 'react-native-vector-icons/AntDesign';
 import IconOcticons from 'react-native-vector-icons/Octicons';
 import IconFontAwesome from 'react-native-vector-icons/FontAwesome';
 import IconFontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {config, isIphoneX} from 'app-config';
-import {navBarTitle, navigationStrings} from 'src/navigation/config/constants';
+import {navBarTitle, navigationRoutes} from 'src/navigation/config/constants';
 import BaseSwitch from '../BaseSwitch/BaseSwitch';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useAppDispatch} from 'src/hooks';
 import {signOut} from 'src/store/slices/authSlice';
 import {setTheme} from 'src/store/slices/commonSlice';
 import {CustomDrawerProps} from '.';
+import ScreenContainer from '../ScreenContainer';
+import {navigate} from 'src/navigation';
 
 const CustomDrawer = (props: CustomDrawerProps) => {
   const dispatch = useAppDispatch();
@@ -39,12 +41,16 @@ const CustomDrawer = (props: CustomDrawerProps) => {
   };
 
   return (
-    <View style={styles.container}>
-      <DrawerContentScrollView {...props}>
+    <ScreenContainer overrideStyle={styles.container}>
+      <DrawerContentScrollView
+        {...props}
+        contentContainerStyle={{
+          paddingTop: isIphoneX ? 0 : 10,
+        }}>
         <TouchableOpacity
           style={styles.userCompactBlock}
           activeOpacity={config.layout.activeOpacity}
-          onPress={() => props.navigation.navigate(navigationStrings.PROFILE)}>
+          onPress={() => navigate(navigationRoutes.PROFILE)}>
           <Image
             source={{
               uri: 'https://i.redd.it/snoovatar/avatars/16f0557d-0d6d-4b6f-8b2b-ad1b305c8c39.png',
@@ -61,9 +67,7 @@ const CustomDrawer = (props: CustomDrawerProps) => {
           <TouchableOpacity
             activeOpacity={config.layout.activeOpacity}
             style={{flexDirection: 'row', paddingRight: 10}}
-            onPress={() =>
-              props.navigation.navigate(navigationStrings.LIST_FRIEND)
-            }>
+            onPress={() => navigate(navigationRoutes.LIST_FRIEND)}>
             <Text style={styles.followerAmount}>10</Text>
             <Text style={styles.followerLabel}>Đang theo dõi</Text>
           </TouchableOpacity>
@@ -87,7 +91,7 @@ const CustomDrawer = (props: CustomDrawerProps) => {
             label={navBarTitle.HOME}
             labelStyle={styles.drawerLabel}
             onPress={() => {
-              props.navigation.navigate(navigationStrings.HOME_PAGE);
+              navigate(navigationRoutes.HOME_PAGE);
             }}
           />
 
@@ -99,7 +103,7 @@ const CustomDrawer = (props: CustomDrawerProps) => {
             label={navBarTitle.BOOK_MARK}
             labelStyle={styles.drawerLabel}
             onPress={() => {
-              props.navigation.navigate(navigationStrings.BOOK_MARK);
+              navigate(navigationRoutes.BOOK_MARK);
             }}
           />
 
@@ -111,7 +115,7 @@ const CustomDrawer = (props: CustomDrawerProps) => {
             label={navBarTitle.TRAINING}
             labelStyle={styles.drawerLabel}
             onPress={() => {
-              props.navigation.navigate(navigationStrings.TRAINING);
+              navigate(navigationRoutes.TRAINING);
             }}
           />
 
@@ -123,7 +127,7 @@ const CustomDrawer = (props: CustomDrawerProps) => {
             label={navBarTitle.POMO_FOCUS}
             labelStyle={styles.drawerLabel}
             onPress={() => {
-              props.navigation.navigate(navigationStrings.POMO_FOCUS);
+              navigate(navigationRoutes.POMO_FOCUS);
             }}
           />
         </View>
@@ -150,7 +154,7 @@ const CustomDrawer = (props: CustomDrawerProps) => {
           style={styles.drawerItem}
           labelStyle={styles.drawerLabel}
           onPress={() => {
-            props.navigation.navigate(navigationStrings.SETTING);
+            navigate(navigationRoutes.SETTING);
           }}
         />
         <DrawerItem
@@ -170,19 +174,17 @@ const CustomDrawer = (props: CustomDrawerProps) => {
           }}
         />
       </View>
-    </View>
+    </ScreenContainer>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     paddingHorizontal: 10,
   },
   userCompactBlock: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingTop: isIphoneX ? 0 : 10,
   },
   userName: {
     fontSize: 18,

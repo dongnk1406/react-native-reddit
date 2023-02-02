@@ -1,37 +1,42 @@
 import {config} from 'app-config';
-import React, {useState} from 'react';
-import {CustomNavBar, ScreenContainer} from 'src/components';
+import React, {useRef, useState} from 'react';
+import {CustomNavBar} from 'src/components';
 import News from './News';
 import Popular from './Popular';
 import {TabView, TabBar} from 'react-native-tab-view';
-import {Text} from 'react-native';
+import {SafeAreaView, Text} from 'react-native';
+import {useScrollToTop} from '@react-navigation/native';
 
 const marginIndicator = (config.layout.windowWidth / 2 - 40) / 2;
 
-function Home(props) {
+function Home(props: JSX.IntrinsicAttributes) {
   const [index, setIndex] = useState<number>(0);
+  const scrollRef = useRef(null);
+  useScrollToTop(scrollRef);
 
   const [routes] = useState([
     {key: 'News', title: 'News'},
     {key: 'Popular', title: 'Popular'},
   ]);
 
-  const renderScene = ({route}) => {
+  const renderScene = ({route}: any) => {
     switch (route.key) {
       case 'News':
-        return <News currentIndex={index} />;
+        return <News currentIndex={index} ref={scrollRef} />;
       case 'Popular':
         return <Popular currentIndex={index} />;
     }
   };
 
   return (
-    <ScreenContainer>
+    <SafeAreaView style={{flex: 1, backgroundColor: config.color.white}}>
       <CustomNavBar {...props} />
       <TabView
-        renderTabBar={props => (
+        renderTabBar={prop => (
           <TabBar
-            {...props}
+            {...prop}
+            // tabStyle={{width: 'auto', paddingHorizontal: 20}}
+            // scrollEnabled
             indicatorContainerStyle={{marginHorizontal: marginIndicator}}
             indicatorStyle={{
               backgroundColor: config.color.primary,
@@ -46,6 +51,7 @@ function Home(props) {
                   color: focused
                     ? config.color.primary
                     : config.color.placeholder,
+                  fontWeight: focused ? '500' : undefined,
                 }}>
                 {route.title}
               </Text>
@@ -55,12 +61,12 @@ function Home(props) {
         )}
         navigationState={{index, routes}}
         renderScene={renderScene}
-        onIndexChange={index => {
-          setIndex(index);
+        onIndexChange={i => {
+          setIndex(i);
         }}
         initialLayout={{width: config.layout.windowWidth}}
       />
-    </ScreenContainer>
+    </SafeAreaView>
   );
 }
 

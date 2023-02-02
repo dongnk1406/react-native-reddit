@@ -33,6 +33,8 @@ const config = {
       shadowRadius: 3,
       elevation: 5,
     },
+    background: '#fff',
+    headerBackground: '#ad1c6d',
     brand: {
       facebook: '#4267B2',
       youtube: '#FF0000',
