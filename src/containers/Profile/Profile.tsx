@@ -100,7 +100,6 @@ const ProfileScreen = () => {
   useEffect(() => {
     prevCountRef.current = number;
   }, [number]);
-
   // variables
   const snapPoints = useMemo(() => ['50%', '90%'], []);
 
