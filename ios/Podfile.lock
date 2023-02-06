@@ -538,7 +538,7 @@ PODS:
     - FirebaseCoreExtension (= 10.3.0)
     - React-Core
     - RNFBApp
-  - RNGestureHandler (2.1.3):
+  - RNGestureHandler (2.9.0):
     - React-Core
   - RNImageCropPicker (0.38.1):
     - React-Core
@@ -551,7 +551,7 @@ PODS:
     - TOCropViewController
   - RNPermissions (3.6.1):
     - React-Core
-  - RNReanimated (2.2.4):
+  - RNReanimated (2.14.4):
     - DoubleConversion
     - FBLazyVector
     - FBReactNativeSpec
@@ -559,7 +559,6 @@ PODS:
     - RCT-Folly
     - RCTRequired
     - RCTTypeSafety
-    - React
     - React-callinvoker
     - React-Core
     - React-Core/DevSupport
@@ -577,7 +576,6 @@ PODS:
     - React-RCTNetwork
     - React-RCTSettings
     - React-RCTText
-    - React-RCTVibration
     - ReactCommon/turbomodule/core
     - Yoga
   - RNScreens (3.19.0):
@@ -944,10 +942,10 @@ SPEC CHECKSUMS:
   RNFBAuth: ea699d902e5dc2eee7f97811915af84babea12bd
   RNFBDynamicLinks: 7c409b3d7f0fdad7aaf96837db627a6c554e58aa
   RNFBMessaging: 04ecf12bae7543cd8df145f1b26d89d867594be7
-  RNGestureHandler: e1099204721a17a89c81fcd1cc2e92143dc040fb
+  RNGestureHandler: 071d7a9ad81e8b83fe7663b303d132406a7d8f39
   RNImageCropPicker: 648356d68fbf9911a1016b3e3723885d28373eda
   RNPermissions: dcdb7b99796bbeda6975a6e79ad519c41b251b1c
-  RNReanimated: e28dfaa950064b674fde0a9b736e62b9dff500a7
+  RNReanimated: e0d473a3ffdcf1273f83cbc3e34cc47e2fff72ed
   RNScreens: ea4cd3a853063cda19a4e3c28d2e52180c80f4eb
   RNShare: 48b3113cd089a2be8ff0515c3ae7a46a4db8a76b
   RNSVG: 551acb6562324b1d52a4e0758f7ca0ec234e278f
