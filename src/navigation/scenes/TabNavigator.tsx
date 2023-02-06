@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import {CardStyleInterpolators} from '@react-navigation/stack';
 import {Home, Post, Chat, Explore, Notification} from 'src/containers/HomePage';
 import IconIonicons from 'react-native-vector-icons/Ionicons';
@@ -11,73 +11,96 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 const BottomTab = createBottomTabNavigator();
 
-const lightHeaderStyle = {
-  headerTitleStyle: {},
-  headerTitleAlign: 'center',
-  headerTintColor: config.color.white,
-  headerStyle: {
-    backgroundColor: config.color.primary,
-  },
-};
-
 function TabStacks() {
-  const Tabs = [
-    {
-      name: navigationRoutes.HOME,
-      component: Home,
-      options: {
-        headerShown: false,
-        tabBarIcon: ({color}) => {
-          return <IconEntypo name="home" size={20} color={color} />;
+  const [amountBadge, setAmountBadge] = useState(0);
+
+  useEffect(() => {
+    let timerID = setInterval(() => {
+      setAmountBadge((prev: number) => prev + 1);
+    }, 20000);
+
+    return () => {
+      clearInterval(timerID);
+    };
+  }, [amountBadge]);
+
+  const lightHeaderStyle = useMemo(
+    () => ({
+      headerTitleStyle: {},
+      headerTitleAlign: 'center',
+      headerTintColor: config.color.white,
+      headerStyle: {
+        backgroundColor: config.color.primary,
+      },
+    }),
+    [],
+  );
+
+  const Tabs = useMemo(
+    () => [
+      {
+        name: navigationRoutes.HOME,
+        component: Home,
+        options: {
+          headerShown: false,
+          tabBarIcon: ({color}) => {
+            return <IconEntypo name="home" size={20} color={color} />;
+          },
         },
       },
-    },
-    {
-      name: navigationRoutes.EXPLORE,
-      component: Explore,
-      options: {
-        headerShown: false,
-        tabBarIcon: ({color}) => {
-          return <IconAntDesign name="search1" size={20} color={color} />;
+      {
+        name: navigationRoutes.EXPLORE,
+        component: Explore,
+        options: {
+          headerShown: false,
+          tabBarIcon: ({color}) => {
+            return <IconAntDesign name="search1" size={20} color={color} />;
+          },
         },
       },
-    },
-    {
-      name: navigationRoutes.POST,
-      component: Post,
-      options: {
-        ...lightHeaderStyle,
-        tabBarIcon: ({color}) => {
-          return <IconAntDesign name="plus" size={20} color={color} />;
+      {
+        name: navigationRoutes.POST,
+        component: Post,
+        options: {
+          ...lightHeaderStyle,
+          tabBarIcon: ({color}) => {
+            return <IconAntDesign name="plus" size={20} color={color} />;
+          },
         },
       },
-    },
-    {
-      name: navigationRoutes.CHAT,
-      component: Chat,
-      options: {
-        ...lightHeaderStyle,
-        tabBarIcon: ({color}) => {
-          return (
-            <IconIonicons name="chatbubble-ellipses" size={20} color={color} />
-          );
+      {
+        name: navigationRoutes.CHAT,
+        component: Chat,
+        options: {
+          ...lightHeaderStyle,
+          tabBarIcon: ({color}) => {
+            return (
+              <IconIonicons
+                name="chatbubble-ellipses"
+                size={20}
+                color={color}
+              />
+            );
+          },
+          tabBarBadge: amountBadge ? amountBadge : null,
+          cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+          // animationEnabled: false,
         },
-        tabBarBadge: '10',
-        cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
-        animationEnabled: false,
       },
-    },
-    {
-      name: navigationRoutes.NOTIFICATION,
-      component: Notification,
-      options: ({route}) => ({
-        ...lightHeaderStyle,
-        tabBarIcon: ({color}) => {
-          return <IconFontAwesome name="bell" size={18} color={color} />;
-        },
-      }),
-    },
-  ];
+      {
+        name: navigationRoutes.NOTIFICATION,
+        component: Notification,
+        options: ({route}) => ({
+          ...lightHeaderStyle,
+          tabBarIcon: ({color}) => {
+            return <IconFontAwesome name="bell" size={18} color={color} />;
+          },
+        }),
+      },
+    ],
+    [lightHeaderStyle, amountBadge],
+  );
+
   return (
     <BottomTab.Navigator
       screenOptions={{

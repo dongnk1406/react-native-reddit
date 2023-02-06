@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
-import {View, ScrollView, StyleSheet} from 'react-native';
+import {View, ScrollView, Text, Image} from 'react-native';
+import {useGetPokemonByNameQuery} from 'src/store/slices/pokemonSlice';
 import {
   VictoryBar,
   VictoryChart,
-  VictoryContainer,
   VictoryAxis,
   Bar,
   VictoryTooltip,
@@ -13,9 +13,14 @@ import {NotificationProps} from '.';
 
 const NotificationScreen = ({}: NotificationProps) => {
   const [activeBar, setActiveBar] = useState(false);
+  const {data, error, isLoading, isFetching} = useGetPokemonByNameQuery(
+    'bulbasaur',
+    {},
+  );
+
   return (
-    <ScrollView>
-      <View style={styles.container}>
+    <ScrollView contentContainerStyle={{flex: 1, backgroundColor: '#fff'}}>
+      <View>
         <VictoryChart domain={{x: [0, 5]}}>
           <VictoryBar
             barWidth={30}
@@ -73,17 +78,28 @@ const NotificationScreen = ({}: NotificationProps) => {
           />
         </VictoryChart>
       </View>
+      <View
+        style={{
+          alignItems: 'center',
+        }}>
+        {error ? (
+          <Text>Oh no, there was an error</Text>
+        ) : isLoading ? (
+          <Text>Loading...</Text>
+        ) : isFetching ? (
+          <Text>Fetching...</Text>
+        ) : data ? (
+          <>
+            <Text>{data.species.name}</Text>
+            <Image
+              source={{uri: data.sprites.front_shiny}}
+              style={{width: 100, height: 100}}
+            />
+          </>
+        ) : null}
+      </View>
     </ScrollView>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#fff',
-  },
-});
 
 export default NotificationScreen;

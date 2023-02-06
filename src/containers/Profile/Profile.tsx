@@ -6,6 +6,7 @@ import {
   LayoutAnimation,
   UIManager,
   SafeAreaView,
+  TouchableOpacity,
 } from 'react-native';
 import {
   BottomSheetModal,
@@ -14,7 +15,6 @@ import {
   BottomSheetBackdropProps,
   BottomSheetTextInput,
 } from '@gorhom/bottom-sheet';
-import StyledTouchable from 'src/components/base/StyledTouchable';
 import Modal from 'react-native-modal';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {navigate, navigationRoutes} from 'src/navigation';
@@ -129,29 +129,29 @@ const ProfileScreen = () => {
           offsetScroll.current = currentOffset;
         }}>
         <View style={styles.container}>
-          <StyledTouchable onPress={handlePresentModalPress}>
+          <TouchableOpacity onPress={handlePresentModalPress}>
             <Text>Show bottom sheet modal</Text>
-          </StyledTouchable>
+          </TouchableOpacity>
 
-          <StyledTouchable onPress={() => setIsVisible(true)}>
+          <TouchableOpacity onPress={() => setIsVisible(true)}>
             <Text>Open Change Avatar</Text>
-          </StyledTouchable>
+          </TouchableOpacity>
 
-          <StyledTouchable
+          <TouchableOpacity
             onPress={() => {
               navigate(navigationRoutes.WebView, {
                 uri: 'https://ramdajs.com/docs/',
               });
             }}>
             <Text>Open WebView</Text>
-          </StyledTouchable>
-          <StyledTouchable
+          </TouchableOpacity>
+          <TouchableOpacity
             onPress={async () => {
               await checkLocation();
             }}>
             <Text>Require location</Text>
-          </StyledTouchable>
-          <StyledTouchable
+          </TouchableOpacity>
+          <TouchableOpacity
             style={{
               backgroundColor: 'red',
               marginVertical: 10,
@@ -162,8 +162,8 @@ const ProfileScreen = () => {
               changeLanguage('en');
             }}>
             <Text>Change language EN</Text>
-          </StyledTouchable>
-          <StyledTouchable
+          </TouchableOpacity>
+          <TouchableOpacity
             style={{
               backgroundColor: 'red',
               marginVertical: 10,
@@ -174,7 +174,7 @@ const ProfileScreen = () => {
               changeLanguage('vn');
             }}>
             <Text>Change language VN</Text>
-          </StyledTouchable>
+          </TouchableOpacity>
           <Text>{t('another')}</Text>
           <Button
             title="Show test"
@@ -298,12 +298,12 @@ const ProfileScreen = () => {
             }}>
             <View style={styles.contentContainer}>
               <Text>Content</Text>
-              <StyledTouchable
+              <TouchableOpacity
                 onPress={() => {
                   bottomSheetModalRef?.current?.dismiss();
                 }}>
                 <Text>Dismiss modal now</Text>
-              </StyledTouchable>
+              </TouchableOpacity>
               <BottomSheetTextInput
                 value="Awesome 🎉"
                 style={{
@@ -335,7 +335,7 @@ const ProfileScreen = () => {
                 borderTopRightRadius: 16,
               }}>
               <Text>I am the modal content!</Text>
-              <StyledTouchable
+              <TouchableOpacity
                 style={{paddingVertical: 10}}
                 onPress={async () => {
                   const response = await checkPhoto();
@@ -354,8 +354,8 @@ const ProfileScreen = () => {
                   }
                 }}>
                 <Text>Choose Photo</Text>
-              </StyledTouchable>
-              <StyledTouchable
+              </TouchableOpacity>
+              <TouchableOpacity
                 onPress={async () => {
                   const response = await checkCamera();
                   if (response) {
@@ -370,13 +370,13 @@ const ProfileScreen = () => {
                   }
                 }}>
                 <Text>Take Photo</Text>
-              </StyledTouchable>
-              <StyledTouchable
+              </TouchableOpacity>
+              <TouchableOpacity
                 onPress={() => {
                   setIsVisible(false);
                 }}>
                 <Text>Cancel</Text>
-              </StyledTouchable>
+              </TouchableOpacity>
             </View>
           </Modal>
         </BottomSheetModalProvider>
